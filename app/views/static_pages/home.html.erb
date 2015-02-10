@@ -1,8 +1,16 @@
 <h1>Welcome back!</h1>
 
-<%= link_to "Click me to sign into Twitter!",  '/auth/twitter' %>
+<div>
+  <%= link_to "Click me to sign into Twitter!",  '/auth/twitter' %>
+</div>
 
-<%= link_to "Click me to Sign into LinkedIn!", '/auth/linkedin' %>
+<div>
+  <%= link_to "Click me to Sign into LinkedIn!", '/auth/linkedin' %>
+</div>
+
+<div>
+  <%= link_to "Click me to Sign into Youtube!/google+", '/auth/google_oauth2' %>
+</div>
 
 <h2>Returned Hash</h2>
 <%= @test %>
