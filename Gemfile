@@ -14,12 +14,21 @@ gem "omniauth-google-oauth2"
 # Hide secret keys and consumer keys
 gem "figaro"
 
+# Use to make HTTP requests
+gem 'httparty'
+
+# Worker gems
+gem 'sidekiq'
+gem 'sinatra', :require => nil
+
 group :development, :test do
   gem 'rspec-rails', '~>3.0'
   gem 'shoulda-matchers', require: false
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'spirit_fingers'
+  gem "better_errors"
+  gem 'quiet_assets'
 end
 
 ################### 
@@ -50,12 +59,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
-
-gem 'httparty'
-
-# Worker gems
-gem 'sidekiq'
-gem 'sinatra', :require => nil
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
