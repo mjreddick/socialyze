@@ -17,6 +17,7 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'spirit_fingers'
 end
 
 ################### 
@@ -47,6 +48,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
+
+gem 'spirit_fingers', group: :development 
+
+gem 'httparty'
+
+# Worker gems
+gem 'sidekiq'
+gem 'sinatra', :require => nil
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
