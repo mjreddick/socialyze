@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   # Callback route to return to after the social media sign in
   get '/auth/:provider/callback', to: 'static_pages#home'
+  
+  
 
 
   # Example of regular route:

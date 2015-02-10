@@ -8,6 +8,8 @@ source 'https://rubygems.org'
 gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-linkedin"
+# Gem for Youtube
+gem "omniauth-google-oauth2"
 
 # Hide secret keys and consumer keys
 gem "figaro"
