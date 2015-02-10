@@ -12,6 +12,13 @@ gem "omniauth-linkedin"
 # Hide secret keys and consumer keys
 gem "figaro"
 
+group :development, :test do
+  gem 'rspec-rails', '~>3.0'
+  gem 'shoulda-matchers', require: false
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
+
 ################### 
 ### RAILS GEMS ###
 ###################
@@ -42,7 +49,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'
