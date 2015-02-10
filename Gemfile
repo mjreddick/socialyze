@@ -1,5 +1,18 @@
 source 'https://rubygems.org'
 
+################### 
+### CUSTOM GEMS ###
+###################
+
+# Use for sign in and OAuth easy access to tokens
+gem "omniauth"
+gem "omniauth-twitter"
+# Hide secret keys and consumer keys
+gem "figaro"
+
+################### 
+### RAILS GEMS ###
+###################
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
