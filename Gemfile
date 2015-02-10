@@ -7,6 +7,8 @@ source 'https://rubygems.org'
 # Use for sign in and OAuth easy access to tokens
 gem "omniauth"
 gem "omniauth-twitter"
+gem "omniauth-linkedin"
+
 # Hide secret keys and consumer keys
 gem "figaro"
 
