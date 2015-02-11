@@ -111,6 +111,9 @@ GEM
     omniauth-google-oauth2 (0.2.6)
       omniauth (> 1.0)
       omniauth-oauth2 (~> 1.1)
+    omniauth-instagram (1.0.1)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-linkedin (0.2.0)
       omniauth-oauth (~> 1.0)
     omniauth-oauth (1.0.1)
@@ -274,6 +277,7 @@ DEPENDENCIES
   jquery-rails
   omniauth
   omniauth-google-oauth2
+  omniauth-instagram
   omniauth-linkedin
   omniauth-twitter
   pg

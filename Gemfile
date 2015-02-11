@@ -8,6 +8,7 @@ source 'https://rubygems.org'
 gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-linkedin"
+gem "omniauth-instagram"
 # Gem for Youtube
 gem "omniauth-google-oauth2"
 
