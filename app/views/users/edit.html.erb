@@ -1,2 +1,8 @@
-<h1>User#edit</h1>
-<p>Find me in app/views/user/edit.html.erb</p>
+<div class="row" id="signup">
+<h1 class="text-center">Edit!</h1>
+  <div class="col-md-5 col-md-offset-1" id="signup-form">
+    <%= render 'form', object: @user %>
+  </div>
+
+  <%= image_tag("http://lorempixel.com/300/300/abstract/1/", :class => "img-responsive col-md-6") %>
+</div>
