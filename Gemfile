@@ -38,7 +38,7 @@ end
 ####################################
 
 gem 'simple_form'
-gem "font-awesome-rails"
+gem "font-awesome-sass"
 gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass', '~> 3.3.3'
 
