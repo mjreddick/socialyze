@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   before_save do
     self.email = email.downcase
+    # capitalizes each word submitted for name if more than one word
+    self.name = name.titleize
   end
 
 end
