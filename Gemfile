@@ -9,6 +9,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 gem "omniauth-linkedin"
 gem "omniauth-instagram"
+gem "omniauth-facebook"
 # Gem for Youtube
 gem "omniauth-google-oauth2"
 
