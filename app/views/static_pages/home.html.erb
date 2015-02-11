@@ -20,7 +20,21 @@
   <%= link_to "Click me to Sign into Facebook!", 'auth/facebook' %>
 </div>
 
+<div>
+  <%= link_to("Go to Sign up", signup_path) %>
+</div>
+
+<div>
+  <%= link_to("Go to log in", login_path) %>
+</div>
 
 
 <h2>Returned Hash</h2>
 <%= @test %>
+
+<% if logged_in? %>
+<p> Welcome <%= current_user.name %> !</p>
+<% end %>
+
+
+

@@ -1,0 +1,11 @@
+<div>
+  <%= simple_form_for :login do |f| %>
+
+    <%= f.input :email, placeholder: 'Enter your email' %>
+
+    <%= f.input :password, placeholder: "Your password" %>
+
+    <%= f.button :submit, "Log in", class: "btn btn-large btn-primary" %>
+
+  <% end %>
+</div>
