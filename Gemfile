@@ -23,6 +23,9 @@ gem 'httparty'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
 
+# JS Library for displaying data
+gem 'd3-rails'
+
 group :development, :test do
   gem 'rspec-rails', '~>3.0'
   gem 'shoulda-matchers', require: false
