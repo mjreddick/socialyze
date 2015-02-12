@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="socialyze">
 <head>
   <title>Socialyze</title>
   <%= stylesheet_link_tag    'application' %>
@@ -8,6 +8,10 @@
 </head>
 <body>
 {{3 + 4}}
+<div ng-controller="SocialyzeController as main">
+
+{{main.test}}
+</div>
 <%= render 'shared/flash' %>
 
 <%= yield %>
