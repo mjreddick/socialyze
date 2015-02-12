@@ -43,7 +43,9 @@ module TwitterHelper
   end
 
   # 180 requests per 15-minute window
-  # Return only 3200 recent tweets
+  # Return only up to 3200 recent tweets per user
+  # In reponse, user's retweeted tweets are excluded. Replies to user's tweets are excluded.
+  #   Maximum of _____ tweets are returned per request
   def send_tweets_request(access_token, screen_name)
     # # Production
     # access_token.get("/1.1/statuses/user_timeline.json?screen_name=#{screen_name}&count=200&exclude_replies=true&include_rts=false").body
@@ -54,6 +56,7 @@ module TwitterHelper
   end
 
   # 15 requests per 15-minute window
+  # Return up to ____ followers
   def send_followers_request(access_token, screen_name)
     # When in production
     # access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=#{screen_name}&count=5000").body
@@ -63,5 +66,10 @@ module TwitterHelper
     access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=angularjs&count=50").body
   end
 
+  # Same request restrains as send_tweets_request method because
+  # using the same access_token
+  def get_follower_tweets(access_token, follower_id)
+    access_token.get("https://api.twitter.com/1.1/followers/ids.json?user_id=#{follower_id}&count=50").body
+  end
 
 end
