@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="socialyze">
 <head>
-  <title>Socialyze</title>
+  <title ng-bind="title"></title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+   <base href="#">
 </head>
 <body>
 {{3 + 4}}

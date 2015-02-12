@@ -1,1 +1,4 @@
-angular.module('socialyze', []);
+angular.module('socialyze', [
+    'templates',
+    'ngRoute',
+    ]);
