@@ -11,30 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210070201) do
+ActiveRecord::Schema.define(version: 20150212071851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "tweet_words", force: true do |t|
     t.string   "word"
-    t.integer  "user_id"
-    t.integer  "tweet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "twitter_account_id"
   end
 
-  add_index "tweet_words", ["tweet_id"], name: "index_tweet_words_on_tweet_id", using: :btree
-  add_index "tweet_words", ["user_id"], name: "index_tweet_words_on_user_id", using: :btree
+  add_index "tweet_words", ["twitter_account_id"], name: "index_tweet_words_on_twitter_account_id", using: :btree
 
   create_table "tweets", force: true do |t|
     t.string   "tweet_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "twitter_account_id"
+  end
+
+  add_index "tweets", ["twitter_account_id"], name: "index_tweets_on_twitter_account_id", using: :btree
+
+  create_table "twitter_accounts", force: true do |t|
+    t.string   "twitter_id"
     t.integer  "user_id"
+    t.string   "token"
+    t.string   "secret"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
+  add_index "twitter_accounts", ["user_id"], name: "index_twitter_accounts_on_user_id", using: :btree
+
+  create_table "twitter_follower_relationships", force: true do |t|
+    t.integer  "followee_id"
+    t.integer  "follower_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "twitter_follower_relationships", ["followee_id"], name: "index_twitter_follower_relationships_on_followee_id", using: :btree
+  add_index "twitter_follower_relationships", ["follower_id"], name: "index_twitter_follower_relationships_on_follower_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
