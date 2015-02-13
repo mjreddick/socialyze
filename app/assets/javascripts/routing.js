@@ -12,7 +12,7 @@ angular
 
     .when('/', {
       title: "Home",
-      templateUrl: "index.html",
+      templateUrl: "index.html.erb",
       controller: 'SocialyzeController',
       controllerAs: 'main'
     })
