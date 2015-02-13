@@ -1,5 +1,6 @@
 module InstagramHelper
 
+  # Generic Instagram call for testing purposes
   def get_instagram_feed(omniAuth)
     access_token = omniAuth.credentials.token
 
@@ -8,14 +9,16 @@ module InstagramHelper
     feed
   end
 
-  def build_instagram_OAuth_consumer
-    OAuth::Consumer.new(ENV['INSTAGRAM_ID'], ENV['INSTAGRAM_SECRET'],
-                        {site: 'https://api.instagram.com/v1/'})
-  end
+  # Build a hash to save info to DB eventually
+  def build_hash(omniauth_hash)
+    user_hash = Hash.new
+    user_hash[:token] = omniauth_hash.credentials.token
+    user_hash[:name] = omniauth_hash.info.name
+    user_hash[:nickname] = omniauth_hash.info.nickname
+    user_hash[:uid] = omniauth_hash.info.uid
+    user_hash[:image] = omniauth_hash.info.image
 
-  def create_instagram_access_token(token, secret)
-    consumer = build_OAuth_consumer
-    OAuth::AccessToken.new(consumer, token, secret)
+    user_hash
   end
 
 end

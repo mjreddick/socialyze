@@ -24,8 +24,9 @@ Rails.application.routes.draw do
   # Callback route to return to after the social media sign in
   get '/auth/:provider/callback', to: 'static_pages#home'
   
-  
-
+  # Web GUI for sidekiq processes
+  require 'sidekiq/web' 
+    mount Sidekiq::Web => '/sidekiq'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
