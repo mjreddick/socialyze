@@ -1,17 +1,5 @@
 module TwitterHelper
 
-  ############################
-  # Testing omniauth/oauth 
-  ############################
-  def get_tweets(omniAuth)
-    # OmniAuth Hash contains the OAutch access token object
-    access_token = omniAuth.extra.access_token
-
-    # Use the access token to make the api call
-    # https://dev.twitter.com/rest/reference/get/statuses/user_timeline
-    tweets = access_token.get("/1.1/statuses/user_timeline.json?screen_name=#{omniAuth.extra.raw_info.screen_name}&count=200&exclude_replies=true&include_rts=false").body
-  end
-
   #####################
   # Build OAuth Objects
   ######################
@@ -52,7 +40,7 @@ module TwitterHelper
 
     # Development
     # access_token.get("/1.1/statuses/user_timeline.json?screen_name=#{screen_name}&count=100&exclude_replies=true&include_rts=false").body
-        access_token.get("/1.1/statuses/user_timeline.json?screen_name=angularjs&count=100&exclude_replies=true&include_rts=false").body
+    access_token.get("/1.1/statuses/user_timeline.json?screen_name=katyperry&count=200&exclude_replies=true&include_rts=false").body
   end
 
   # 15 requests per 15-minute window
@@ -63,7 +51,7 @@ module TwitterHelper
 
     # Development
     # access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=#{screen_name}&count=50").body
-    access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=angularjs&count=50").body
+    access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=TheEllenShow&count=10").body
   end
 
   # Same request restrains as send_tweets_request method because
