@@ -1,3 +1,11 @@
+<div ng-view>
+
+  
+</div>
+
+
+
+
 <% if logged_in? %>
 <h1> Welcome Back <%= current_user.name %> !
 </h1>
@@ -23,6 +31,14 @@
   <%= link_to "Click me to Sign into Facebook!", 'auth/facebook' %>
 </div>
 
+<div>
+  <%= link_to "Twitter", "#/twitter" %>
+</div>
+
+<div>
+  <%= link_to "SPA Home", "/" %>
+</div>
+
 <br>
 <% if logged_in? %>
   <div>
@@ -46,6 +62,8 @@
 
 <h2>Returned Hash</h2>
 <%= @test %>
+
+
 
 
 
