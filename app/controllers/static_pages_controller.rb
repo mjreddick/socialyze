@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   include TwitterHelper
-  include InstagramHelper
+  # include InstagramHelper # refactor into classes
 
   def home
     # Display the returned hash in the view
@@ -13,14 +13,14 @@ class StaticPagesController < ApplicationController
       TwitterBuildUserData.perform_async(user_hash, 1)
     end
 
-    if request.env['omniauth.auth'] != nil && params[:provider] == 'instagram'
-      # @instagram_feed = get_instagram_feed(request.env['omniauth.auth'])
-      omniAuth = request.env['omniauth.auth']
-      user_hash = build_hash(request.env['omniauth.auth'])
+    # if request.env['omniauth.auth'] != nil && params[:provider] == 'instagram'
+    #   # @instagram_feed = get_instagram_feed(request.env['omniauth.auth'])
+    #   omniAuth = request.env['omniauth.auth']
+    #   user_hash = build_hash(request.env['omniauth.auth'])
 
-      access_token = request.env['omniauth.auth'].credentials.token
+    #   access_token = request.env['omniauth.auth'].credentials.token
 
-      InstagramBuildUserData.perform_async(access_token)
-    end
+    #   InstagramBuildUserData.perform_async(access_token)
+    # end
   end
 end
