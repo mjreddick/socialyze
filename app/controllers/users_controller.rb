@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  include TwitterHelper
+
+  def index
+
+  end
+
   def new
     @user = User.new
   end
