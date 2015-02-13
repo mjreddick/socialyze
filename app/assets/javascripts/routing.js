@@ -19,8 +19,8 @@ angular
     .when('/twitter', {
       title: "Your Twitter Info",
       templateUrl: "twitter.html",
-      controller: "SocialyzeController",
-      controllerAs: 'main'
+      controller: "TwitterController",
+      controllerAs: 'twitter'
     })
     .otherwise({
       redirectTo: '/'

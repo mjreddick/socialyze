@@ -1,4 +1,5 @@
 angular.module('socialyze', [
     'templates',
-    'ngRoute'
+    'ngRoute',
+    'ngResource'
     ]);
