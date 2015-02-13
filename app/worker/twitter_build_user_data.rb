@@ -7,12 +7,22 @@ class TwitterBuildUserData
     access_token = create_access_token(info_hash["token"], info_hash["secret"])
 
     ##### Add user to twitter_account table #####
-    # check TwitterHelper module to see keys of info_hash
+    # user = User.find(user_id) # production
+    user = User.find(User.all.first.id) # development
 
-    ##### Build tweets table #####
+    # 
+    user.build_twitter_account(twitter_id: info_hash["uid"], token: info_hash["token"], secret: info_hash["secret"]).save
+
+    #### Build tweets table #####
+    
     response_body = send_tweets_request(access_token, info_hash["screen_name"])
 
     JSON.parse(response_body).each do |item|
+        tweet = user.twitter_account.tweets.build
+        tweet.tweet_text = item["text"]
+        # tweet.save
+
+
         # item["text"] <- to grab each tweet
         # item["created_at"] <- format "day month date time" ("Wed Feb 11 23:57:10 +0000 2015")
         # item["id_str"] <- id(type String) of particular tweet
@@ -23,7 +33,13 @@ class TwitterBuildUserData
         # Add code to save each tweet to tweet_text table
     end
 
+
+
     ##### Build words table #####
+
+
+
+
 
 
 
@@ -32,26 +48,19 @@ class TwitterBuildUserData
     response_body = send_followers_request(access_token, info_hash["screen_name"])
 
     JSON.parse(response_body)["ids"].each do |follower_id|
-        # Add to twitter_follower_relationship table
-        # Create twitter_account for follower if he/she doesn't exist in it yet
-        # Add to tweet text/word tables?
+        # Create twitter_account and relationships
+        user.twitter_account.followers.create(twitter_id: follower_id)
 
+        # Add followers' tweets to table
+        # Add followers' words to table
 
-        # Followers' tweets. Need to parse 
         # response_body = get_follower_tweets(access_token, follower_id)
     end
 
 
 
-
-
-    
-
-
-
-
-
     ##### Run analysis #####
+
 
 
   end
