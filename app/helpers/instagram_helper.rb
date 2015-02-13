@@ -2,10 +2,10 @@ module InstagramHelper
 
   def get_instagram_feed(omniAuth)
     access_token = omniAuth.credentials.token
-    ("https://api.instagram.com/v1/users/self/feed?access_token=#{access_token}").body
 
+    feed = HTTParty.get("https://api.instagram.com/v1/users/self/feed?access_token=#{access_token}").body
 
-
+    feed
   end
 
   def build_instagram_OAuth_consumer
