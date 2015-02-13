@@ -10,7 +10,7 @@ angular
   function config($routeProvider, $locationProvider){
     $routeProvider
 
-    .when('/', {
+    .when('/#', {
       title: "Home",
       templateUrl: "index.html.erb",
       controller: 'SocialyzeController',
