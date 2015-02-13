@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :create, :edit, :destroy, :update]
   get '/signup' => 'users#new'
+  post '/signup' => 'sessions#create'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
