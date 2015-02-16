@@ -9,6 +9,8 @@ angular
   function TwitterController($resource){
     var self = this;
 
+    self.testd3 = testd3;
+
 
     var Tweets = $resource('http://localhost:3000/api/tweets',
         {update: {method: 'PUT'}} );
@@ -19,4 +21,8 @@ angular
     function getTweets() {
       return Tweets.get();
     };
+
+    function testd3() {
+      console.log(d3);
+    }
   }
