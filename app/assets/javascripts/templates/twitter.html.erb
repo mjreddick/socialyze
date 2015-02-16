@@ -25,7 +25,7 @@ var data = [
 
 values = [4, 8, 15, 16, 23, 42, 100, 20]
 
-var margin = {top: 20, right: 20, bottom: 30, left: 60},
+var margin = {top: 20, right: 20, bottom: 50, left: 60},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
@@ -57,7 +57,12 @@ var svg = d3.select("svg")
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+      .call(xAxis)
+    .append("text")
+      .attr("x", 500)
+      .attr("dy", "3em")
+      .style("text-anchor", "end")
+      .text("Frequency");
 
   svg.append("g")
       .attr("class", "y axis")
