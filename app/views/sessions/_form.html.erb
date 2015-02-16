@@ -1,5 +1,5 @@
 <div class="sessions-form">
-  <%= simple_form_for :login do |f| %>
+  <%= simple_form_for :login, :url => login_path, :method => :post do |f| %>
 
     <%= f.input :email, placeholder: 'Enter your email' %>
 

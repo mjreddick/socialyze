@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
-  post '/' => 'sessions#create'
 
   namespace :api, defaults: {format: "json"} do
     resources :twitter_accounts, only: [:index, :create]
