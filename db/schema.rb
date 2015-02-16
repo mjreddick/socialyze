@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215233838) do
+ActiveRecord::Schema.define(version: 20150216220937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "stop_words", force: true do |t|
+    t.string   "word"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stop_words", ["word"], name: "index_stop_words_on_word", using: :btree
 
   create_table "tweet_words", force: true do |t|
     t.string   "word"
