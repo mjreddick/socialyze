@@ -19,22 +19,29 @@
 @import "font-awesome";
 
 
-.chart rect {
-  fill: red;
+
+
+.bar {
+  fill: steelblue;
 }
 
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
+.bar:hover {
+  fill: brown;
 }
 
-.chart div {
+.axis {
   font: 10px sans-serif;
-  background-color: red;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
 }
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
 
