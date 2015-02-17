@@ -20,7 +20,7 @@ function barGraph() {
         {name: "Shephard", value: 23},
         {name: "Kwon",     value: 42},
         {name: "Long",     value: 100},
-        {name: "Matt",     value: 20}
+        {name: "Matt",     value: 200}
       ];
 
       values = [4, 8, 15, 16, 23, 42, 100, 20]
@@ -83,10 +83,6 @@ function barGraph() {
             .attr("y", function(d) { return y(d.value); })
             .attr("height", function(d) { return height - y(d.value); });
 
-      function type(d) {
-        d.frequency = +d.frequency;
-        return d;
-      }
     }
   }
 }
