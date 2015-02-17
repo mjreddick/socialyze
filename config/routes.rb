@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: "json"} do
     resources :twitter_accounts, only: [:index, :create]
     resources :tweets, only: [:index, :create]
+    post "/authenticate" => 'authentication#sign_in'
   end
 
 
