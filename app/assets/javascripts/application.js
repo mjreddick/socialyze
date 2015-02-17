@@ -19,4 +19,6 @@
 //= require d3
 //= require bootstrap-sprockets
 //= require_tree .
+//= require_tree ./directives
 //= require_tree ./templates
+

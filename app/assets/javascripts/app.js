@@ -3,3 +3,4 @@ angular.module('socialyze', [
     'ngRoute',
     'ngResource'
     ]);
+
