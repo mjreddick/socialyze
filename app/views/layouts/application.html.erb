@@ -14,6 +14,63 @@
 {{main.test}}
 </div>
 <%= render 'shared/flash' %>
+<div>
+  <% if logged_in? %>
+<h1> Welcome Back <%= current_user.name %> !
+</h1>
+<% end %>
+
+<div>
+  <%= link_to "Click me to sign into Twitter!",  '/auth/twitter' %>
+</div>
+
+<div>
+  <%= link_to "Click me to Sign into LinkedIn!", '/auth/linkedin' %>
+</div>
+
+<div>
+  <%= link_to "Click me to Sign into Youtube!/google+", '/auth/google_oauth2' %>
+</div>
+
+<div>
+  <%= link_to "Click me to Sign into Instagram!", '/auth/instagram' %>
+</div>
+
+<div>
+  <%= link_to "Click me to Sign into Facebook!", 'auth/facebook' %>
+</div>
+
+<div>
+  <%= link_to "Twitter", "#/twitter" %>
+</div>
+
+
+
+<br>
+<% if logged_in? %>
+  <div>
+    <%= link_to 'Log Out', logout_path, method: :delete %>
+  </div>
+  <div>
+    <%= link_to "Delete Your Account", current_user, method: :delete, data: {confirm: "Are you sure you want to delete this user?"} %>
+  </div>
+  <div>
+    <%= link_to 'Edit Your Account', edit_user_path(current_user)%>
+  </div>
+<% else %>  
+  <div>
+    <%= link_to("Go to Sign up", signup_path) %> or <%= link_to("Log in", login_path) %>
+  </div>
+<% end %>
+
+
+
+
+
+<h2>Returned Hash</h2>
+<%= @test %>
+<%= @instagram_feed %>
+</div>
 
 <div ng-view ng-controller="SocialyzeController as main">
 <%= yield %>
