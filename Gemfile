@@ -15,6 +15,8 @@ gem "omniauth-facebook"
 # Gem for Youtube
 gem "omniauth-google-oauth2"
 
+gem 'rails_12factor'
+
 # Hide secret keys and consumer keys
 gem "figaro"
 
@@ -30,6 +32,7 @@ gem 'd3-rails'
 
 # Create seed files using existing data in DB
 gem 'seed_dump'
+
 
 group :development, :test do
   gem 'rspec-rails', '~>3.0'
