@@ -57,7 +57,34 @@ module TwitterHelper
   # Same request restrains as send_tweets_request method because
   # using the same access_token
   def get_follower_tweets(access_token, follower_id)
-    access_token.get("https://api.twitter.com/1.1/followers/ids.json?user_id=#{follower_id}&count=50").body
+    access_token.get("https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=#{follower_id}&count=200&exclude_replies=true&include_rts=false").body
+    # access_token.get("https://api.twitter.com/1.1/followers/ids.json?user_id=#{follower_id}&count=50").body
+  end
+
+  def get_tweets(access_token, twitter_uid)
+    access_token.get("https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=#{twitter_uid}&count=200&exclude_replies=true&include_rts=false")
+  end
+
+  def split_tweet_into_words(tweet_text)
+    # regex to detect links
+    link_regex = /(http)\S*/i
+    # regex to detect hashtags
+    hashtag_regex = /\W#\w*/
+    # regex to detect mentions
+    mention_regex = /\W@\w*/
+
+    # replace each link with a space
+    tweet_text = tweet_text.gsub(link_regex, " ")
+    # replace each hashtaged word with a space
+    tweet_text = tweet_text.gsub(hashtag_regex, " ")
+    # replace each mention with a space
+    tweet_text = tweet_text.gsub(mention_regex, " ")
+
+    # Remove capitalization and split based on none word characters
+    word_array = tweet_text.downcase.split(/\W+/)
+
+    # Remove any single letter words and return the array of words
+    word_array.reject { |word| word.length < 2 }
   end
 
 end
