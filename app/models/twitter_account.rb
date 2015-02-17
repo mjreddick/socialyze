@@ -9,5 +9,4 @@ class TwitterAccount < ActiveRecord::Base
 
   validates :twitter_uid, presence: true, uniqueness: true
   validates :username, presence: true
-  validates :time_zone, presence: true
 end
