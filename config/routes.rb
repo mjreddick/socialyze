@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
 
-  resources :users, only: [:new, :show, :create]
+  resources :users, only: [:index, :show, :create, :edit, :destroy, :update]
   get '/signup' => 'users#new'
+  post '/signup' => 'sessions#create'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+
+  namespace :api, defaults: {format: "json"} do
+    resources :twitter_accounts, only: [:index, :create]
+    resources :tweets, only: [:index, :create]
+    post "/authenticate" => 'authentication#sign_in'
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -18,8 +25,9 @@ Rails.application.routes.draw do
   # Callback route to return to after the social media sign in
   get '/auth/:provider/callback', to: 'static_pages#home'
   
-  
-
+  # Web GUI for sidekiq processes
+  require 'sidekiq/web' 
+    mount Sidekiq::Web => '/sidekiq'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
