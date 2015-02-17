@@ -18,7 +18,6 @@
 //= require angular-rails-templates
 //= require d3
 //= require bootstrap-sprockets
-//= require "main_app.js"
 //= require_tree .
 //= require_tree ./templates
 
