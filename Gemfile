@@ -16,6 +16,7 @@ gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
 
 gem 'rails_12factor'
+gem 'ngannotate-rails'
 
 # Hide secret keys and consumer keys
 gem "figaro"
