@@ -1,4 +1,6 @@
-
+<div>
+  <%= link_to "Signup", "#/signup" %>
+</div>
 
 
 
@@ -33,6 +35,8 @@
 
 
 
+
+
 <br>
 <% if logged_in? %>
   <div>
@@ -45,6 +49,9 @@
     <%= link_to 'Edit Your Account', edit_user_path(current_user)%>
   </div>
 <% else %>  
+<div>
+  <%= link_to "Signup", "#/signup" %>
+</div>
   <div>
     <%= link_to("Go to Sign up", signup_path) %> or <%= link_to("Log in", login_path) %>
   </div>

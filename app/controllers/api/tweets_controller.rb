@@ -1,7 +1,7 @@
 module API
   class TweetsController < ApplicationController
-    before_action :restrict_access
-    before_action :load_user
+    # before_action :restrict_access
+    # before_action :load_user, except :index
 
     def index 
       render json: Tweet.all

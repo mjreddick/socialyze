@@ -21,6 +21,12 @@ angular
       controller: "TwitterController",
       controllerAs: 'twitter'
     })
+    .when('/signup', {
+      title: "Sign up!",
+      templateUrl: "signup.html",
+      controller: "SocialyzeController",
+      ControllerAs: 'main'
+    })
     .otherwise({
       redirectTo: '/'
     });

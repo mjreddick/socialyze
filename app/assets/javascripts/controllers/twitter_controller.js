@@ -9,9 +9,8 @@ angular
   function TwitterController($resource){
     var self = this;
 
-    var Tweets = $resource('http://localhost:3000/api/tweets',
-        {update: {method: 'PUT'}} );
-
+    var Tweets = $resource('http://localhost:3000/api/tweets')
+    
     self.test = "Im in the ng-twitter controller"
     self.tweetList = getTweets();
 

@@ -7,13 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <%= render 'shared/navigation' %>
+<%= render 'shared/flash' %>
 {{3 + 4}}
 <div ng-controller="SocialyzeController as main">
 
 {{main.test}}
 </div>
-<%= render 'shared/flash' %>
+<%= yield %>
+
 <div>
   <% if logged_in? %>
 <h1> Welcome Back <%= current_user.name %> !
@@ -42,6 +45,10 @@
 
 <div>
   <%= link_to "Twitter", "#/twitter" %>
+</div>
+
+<div>
+  <%= link_to "Signup", "#/signup" %>
 </div>
 
 
@@ -73,7 +80,7 @@
 </div>
 
 <div ng-view ng-controller="SocialyzeController as main">
-<%= yield %>
+
 </div>
 </body>
 </html>
