@@ -76,7 +76,7 @@ function barGraph() {
 
         svg.selectAll(".bar")
             .data(data)
-          .enter().append("rect")
+          .enter().append("rect")  
             .attr("class", "bar")
             .attr("x", function(d) { return x(d.name); })
             .attr("width", x.rangeBand())
