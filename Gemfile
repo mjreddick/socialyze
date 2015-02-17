@@ -28,6 +28,9 @@ gem 'sinatra', :require => nil
 # JS Library for displaying data
 gem 'd3-rails'
 
+# Create seed files using existing data in DB
+gem 'seed_dump'
+
 group :development, :test do
   gem 'rspec-rails', '~>3.0'
   gem 'shoulda-matchers', require: false
