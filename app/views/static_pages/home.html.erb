@@ -1,4 +1,6 @@
-<h1>Welcome back!</h1>
+<% if logged_in? %>
+<h1> Welcome Back <%= current_user.name %> !</h1>
+<% end %>
 
 <div>
   <%= link_to "Click me to sign into Twitter!",  '/auth/twitter' %>
@@ -12,5 +14,33 @@
   <%= link_to "Click me to Sign into Youtube!/google+", '/auth/google_oauth2' %>
 </div>
 
+<div>
+  <%= link_to "Click me to Sign into Instagram!", '/auth/instagram' %>
+</div>
+
+<div>
+  <%= link_to "Click me to Sign into Facebook!", 'auth/facebook' %>
+</div>
+
+
+<% if logged_in? %>
+  <div>
+    <%= link_to 'Log Out', logout_path, method: :delete %>
+  </div>
+<% else %>  
+  <div>
+    <%= link_to("Go to Sign up", signup_path) %> or <%= link_to("Log in", login_path) %>
+  </div>
+<% end %>
+
+
+
+
+
 <h2>Returned Hash</h2>
 <%= @test %>
+
+
+
+
+

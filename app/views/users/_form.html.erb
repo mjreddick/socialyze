@@ -1,0 +1,15 @@
+
+<div>
+  <%= simple_form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
+
+    <%= f.input :name, placeholder: 'Your Name' %>
+
+    <%= f.input :email, placeholder: 'Your Email Address' %>
+
+    <%= f.input :password, placeholder: "Create a password" %>
+
+    <%= f.input :password_confirmation, placeholder: "Verify Password" %>
+
+    <%= f.button :submit, "Lets Go", :class => "btn btn-primary center-block" %>
+  <% end %>
+</div>
