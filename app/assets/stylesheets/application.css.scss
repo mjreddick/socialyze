@@ -21,10 +21,15 @@
 .navbar {
 padding-right: 20px;
 padding-top: 5px;
-}@import "font-awesome";
+border-radius: 0;
+}
 
-
-
+#home-splash {
+  background-image: url('wallpaperlogo.jpg');
+  min-height: 640px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 .bar {
   fill: steelblue;
