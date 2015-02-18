@@ -4,6 +4,9 @@ class StaticPagesController < ApplicationController
 
   def home
     @user = User.new
+    if logged_in?
+    @current_user = current_user
+    end
     # Display the returned hash in the view
     @test = request.env['omniauth.auth']
 
