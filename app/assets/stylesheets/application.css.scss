@@ -78,6 +78,7 @@ margin-bottom: 0;
   // color: #fff;
 }
 
+// Bar Graph Styling
 .bar {
   fill: steelblue;
 }
@@ -99,6 +100,25 @@ margin-bottom: 0;
 
 .x.axis path {
   display: none;
+}
+
+// #####################################################
+// ############ Twitter Template #######################
+// #####################################################
+
+#twitter-template-container {
+  text-align: center;
+}
+
+.twitter-graph  {
+  display: inline-block;
+  background-color: white;
+  width: 70vw;
+}
+
+.graph-header {
+  background-color: #4099FF;
+  height: 80px;
 }
 
 
