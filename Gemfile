@@ -20,6 +20,10 @@ gem 'rails_12factor'
 
 # Hide secret keys and consumer keys
 gem "figaro"
+# Use thin for heroku deployment
+group :production do
+  gem 'thin'  
+end
 
 # Use to make HTTP requests
 gem 'httparty'
