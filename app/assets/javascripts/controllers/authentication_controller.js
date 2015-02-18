@@ -19,7 +19,6 @@ AuthenticationController.$inject = ['$http'];
         password: self.password
       })
       .success(function(response){
-        console.log(response);
         setAccessToken(response.access_token)
         self.isAuthenticated = isAuthenticated();
         self.email = null;
