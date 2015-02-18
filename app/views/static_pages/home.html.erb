@@ -11,6 +11,10 @@
             <input class="login-input" type="password" placeholder="password" ng-model="auth.password">
             <input type="submit" value="Log in" class="btn btn-submit">
         </form>
+
+         <!-- begin log out button -->
+        <button ng-if="auth.isAuthenticated" class="btn btn-submit" ng-click="auth.logout()">Log out</button>
+        <!-- end log out button -->
 </div>
 
 
