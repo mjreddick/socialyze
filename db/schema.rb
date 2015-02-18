@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20150217052030) do
 
   add_index "api_keys", ["user_id"], name: "index_api_keys_on_user_id", using: :btree
 
+  create_table "stop_words", force: true do |t|
+    t.string   "word"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stop_words", ["word"], name: "index_stop_words_on_word", using: :btree
+
   create_table "tweet_words", force: true do |t|
     t.string   "word"
     t.datetime "created_at"

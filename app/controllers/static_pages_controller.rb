@@ -13,8 +13,8 @@ class StaticPagesController < ApplicationController
     if request.env['omniauth.auth'] != nil && params[:provider] == 'twitter'
       # Workers
       user_hash = build_hash(request.env['omniauth.auth'])
-      # TwitterBuildUserData.perform_async(user_hash, current_user.id) # production
-      TwitterBuildUserData.perform_async(user_hash, 1)
+      TwitterBuildUserData.perform_async(user_hash, current_user.id) # production
+      # TwitterBuildUserData.perform_async(user_hash, 1)
     end
 
     # if request.env['omniauth.auth'] != nil && params[:provider] == 'instagram'

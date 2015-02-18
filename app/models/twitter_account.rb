@@ -8,6 +8,4 @@ class TwitterAccount < ActiveRecord::Base
   has_many :followees, through: :followee_relationships
 
   validates :twitter_uid, presence: true, uniqueness: true
-  validates :username, presence: true
-  validates :time_zone, presence: true
 end

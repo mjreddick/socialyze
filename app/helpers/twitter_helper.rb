@@ -30,34 +30,41 @@ module TwitterHelper
     user_hash
   end
 
+  # 15 requests per 15-minute window
+  # Return up to ____ followers
+  def get_follower_ids(access_token, screen_name)
+    # Only get 100 followers so that the rate limit shouldn't be an issue
+    access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=#{screen_name}&count=100").body
+  end
+
   # 180 requests per 15-minute window
   # Return only up to 3200 recent tweets per user
   # In reponse, user's retweeted tweets are excluded. Replies to user's tweets are excluded.
   #   Maximum of _____ tweets are returned per request
-  def send_tweets_request(access_token, screen_name)
-    # # Production
-    # access_token.get("/1.1/statuses/user_timeline.json?screen_name=#{screen_name}&count=200&exclude_replies=true&include_rts=false").body
-
-    # Development
-    # access_token.get("/1.1/statuses/user_timeline.json?screen_name=#{screen_name}&count=100&exclude_replies=true&include_rts=false").body
-    access_token.get("/1.1/statuses/user_timeline.json?screen_name=katyperry&count=200&exclude_replies=true&include_rts=false").body
+  def get_tweets(access_token, twitter_uid)
+    access_token.get("https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=#{twitter_uid}&count=200&exclude_replies=true&include_rts=false").body
   end
 
-  # 15 requests per 15-minute window
-  # Return up to ____ followers
-  def send_followers_request(access_token, screen_name)
-    # When in production
-    # access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=#{screen_name}&count=5000").body
+  def split_tweet_into_words(tweet_text)
+    # regex to detect links
+    link_regex = /(http)\S*/i
+    # regex to detect hashtags
+    hashtag_regex = /\W#\w*/
+    # regex to detect mentions
+    mention_regex = /\W@\w*/
 
-    # Development
-    # access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=#{screen_name}&count=50").body
-    access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=TheEllenShow&count=10").body
-  end
+    # replace each link with a space
+    tweet_text = tweet_text.gsub(link_regex, " ")
+    # replace each hashtaged word with a space
+    tweet_text = tweet_text.gsub(hashtag_regex, " ")
+    # replace each mention with a space
+    tweet_text = tweet_text.gsub(mention_regex, " ")
 
-  # Same request restrains as send_tweets_request method because
-  # using the same access_token
-  def get_follower_tweets(access_token, follower_id)
-    access_token.get("https://api.twitter.com/1.1/followers/ids.json?user_id=#{follower_id}&count=50").body
+    # Remove capitalization and split based on none word characters
+    word_array = tweet_text.downcase.split(/\W+/)
+
+    # Remove any single letter words and return the array of words
+    word_array.reject { |word| word.length < 2 }
   end
 
 end
