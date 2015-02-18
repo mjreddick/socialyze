@@ -36,11 +36,11 @@ module TwitterHelper
   #   Maximum of _____ tweets are returned per request
   def send_tweets_request(access_token, screen_name)
     # # Production
-    # access_token.get("/1.1/statuses/user_timeline.json?screen_name=#{screen_name}&count=200&exclude_replies=true&include_rts=false").body
+    access_token.get("/1.1/statuses/user_timeline.json?screen_name=#{screen_name}&count=200&exclude_replies=true&include_rts=false").body
 
     # Development
     # access_token.get("/1.1/statuses/user_timeline.json?screen_name=#{screen_name}&count=100&exclude_replies=true&include_rts=false").body
-    access_token.get("/1.1/statuses/user_timeline.json?screen_name=katyperry&count=200&exclude_replies=true&include_rts=false").body
+    # access_token.get("/1.1/statuses/user_timeline.json?screen_name=katyperry&count=200&exclude_replies=true&include_rts=false").body
   end
 
   # 15 requests per 15-minute window
@@ -50,8 +50,9 @@ module TwitterHelper
     # access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=#{screen_name}&count=5000").body
 
     # Development
-    # access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=#{screen_name}&count=50").body
-    access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=TheEllenShow&count=10").body
+    # Only get 100 followers so that the rate limit shouldn't be an issue
+    access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=#{screen_name}&count=100").body
+    # access_token.get("https://api.twitter.com/1.1/followers/ids.json?screen_name=TheEllenShow&count=10").body
   end
 
   # Same request restrains as send_tweets_request method because
@@ -62,7 +63,7 @@ module TwitterHelper
   end
 
   def get_tweets(access_token, twitter_uid)
-    access_token.get("https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=#{twitter_uid}&count=200&exclude_replies=true&include_rts=false")
+    access_token.get("https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=#{twitter_uid}&count=200&exclude_replies=true&include_rts=false").body
   end
 
   def split_tweet_into_words(tweet_text)
