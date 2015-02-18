@@ -1,4 +1,6 @@
+
 Rails.application.routes.draw do
+
 
   resources :users, only: [:index, :show, :create, :edit, :destroy, :update]
   get '/signup' => 'users#new'
@@ -19,8 +21,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-
-  root 'static_pages#home'
+    root 'static_pages#home'
 
   # Callback route to return to after the social media sign in
   get '/auth/:provider/callback', to: 'static_pages#home'

@@ -18,16 +18,53 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+$fontBlue: #4099FF;
+
+body {
+  background-color: #e2e2e2; 
+}
+
+
+// #####################################################
+// ################### Shared Nav Bar ##################
+// #####################################################
 .navbar {
 padding-right: 20px;
 padding-top: 5px;
 border-radius: 0;
+margin-bottom: 0;
+  li {
+    color: #fff;
+  }
+  .fa {
+    color: #fff;
+  }
+}
+
+.dropdown-menu {
+  li {
+    color: $fontBlue;
+  }
+}
+
+.btn-social {
+  background-color: $fontBlue;
+}
+
+#white-text {
+  color: #fff;
+}
+
+.navbar-left {
+  button {
+    background-color: $fontBlue;
+  }
 }
 // #####################################################
 // ############ Angular Template Home Page #############
 // #####################################################
 #home-splash {
-  background-image: url('wallpaper.jpg');
+  background-image: url('https://s3-us-west-1.amazonaws.com/socialyze/wallpaper.jpg');
   min-height: 320px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -37,7 +74,9 @@ border-radius: 0;
   padding-right: 20%;
 }
 
-
+#glyphs {
+  // color: #fff;
+}
 
 .bar {
   fill: steelblue;
