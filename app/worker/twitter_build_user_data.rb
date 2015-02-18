@@ -16,6 +16,9 @@ class TwitterBuildUserData
     # get the response body with a user's tweets
     user_tweets = get_tweets(access_token, info_hash["uid"])
     
+    puts "user_tweets >>>>>>>>>>>>>>>>"
+    p user_tweets
+    puts "user_tweets end <<<<<<<<<<<<<<<<<<<"
 
     JSON.parse(user_tweets).each do |item|
       tweet = user.twitter_account.tweets.build
@@ -47,51 +50,60 @@ class TwitterBuildUserData
     ##### Each follower - add to twitter account table, tweets, words #####
     followers_data = send_followers_request(access_token, info_hash["screen_name"])
 
-    JSON.parse(followers_data)["ids"].each do |follower_id|
-      # Get the tweets for that follower
-      follower_tweets = get_tweets(access_token, follower_id)
-      parsed_follower_tweets = JSON.parse(follower_tweets)
+    # JSON.parse(followers_data)["ids"].each do |follower_id|
+    #   # Get the tweets for that follower
 
-      # Only save a follower if they have tweets
-      #   This is done to save an api call to get the additional info needed
-      #   for that user such as username
-      unless parsed_follower_tweets.blank?
-        # Use the data from the first tweet to build the follower's twitter account
-        first_tweet = parsed_follower_tweets.first
-        # Create twitter_account and relationships
-        if follower_account = user.twitter_account.followers.create(twitter_uid: first_tweet["user"]["id_str"], username: first_tweet["user"]["screen_name"])
+    #   puts "follower >>>>>>>>>>>>>>>>>>>>>>>"
+    #   p follower_id.class
+    #   p follower_id
+    #   puts "follower <<<<<<<<<<<<<<<<<<<<<<<"
 
-          # if the follower's twitter account is saved then walk through all their tweets
-          parsed_follower_tweets.each do |item|
-            tweet = follower_account.tweets.build
-            tweet.tweet_text = item["text"]
-            tweet.twitter_tweet_id = item["id_str"]
+    #   follower_tweets = get_tweets(access_token, follower_id)
+    #   parsed_follower_tweets = JSON.parse(follower_tweets)
 
-            if tweet.save
-              ##### Build words table #####
-              # if the save succeeded then the tweet is unique
-              # break the tweet up into words and save those words
-              words = split_tweet_into_words(item["text"])
-              words.each do |word|
-                # save each word unless it is a stop word
-                follower_account.tweet_words.create(word: word) unless StopWord.find_by(word: word)
-              end
-            end
-          end
+    #   # Only save a follower if they have tweets
+    #   #   This is done to save an api call to get the additional info needed
+    #   #   for that user such as username
+    #   puts "parsed_follower_tweets >>>>>>>>>>>>>>>>>>>"
+    #   puts parsed_follower_tweets
+    #   puts "parsed_follower_tweets END <<<<<<<<<<<<<<<<<<<<<"
+    #   unless parsed_follower_tweets.blank?
+    #     # Use the data from the first tweet to build the follower's twitter account
+    #     first_tweet = parsed_follower_tweets.first
+    #     # Create twitter_account and relationships
+    #     if follower_account = user.twitter_account.followers.create(twitter_uid: first_tweet["user"]["id_str"], username: first_tweet["user"]["screen_name"])
 
-        end
+    #       # if the follower's twitter account is saved then walk through all their tweets
+    #       parsed_follower_tweets.each do |item|
+    #         tweet = follower_account.tweets.build
+    #         tweet.tweet_text = item["text"]
+    #         tweet.twitter_tweet_id = item["id_str"]
 
-      end
+    #         if tweet.save
+    #           ##### Build words table #####
+    #           # if the save succeeded then the tweet is unique
+    #           # break the tweet up into words and save those words
+    #           words = split_tweet_into_words(item["text"])
+    #           words.each do |word|
+    #             # save each word unless it is a stop word
+    #             follower_account.tweet_words.create(word: word) unless StopWord.find_by(word: word)
+    #           end
+    #         end
+    #       end
+
+    #     end
+
+    #   end
       
 
       
 
 
-      # Add followers' tweets to table
-      # Add followers' words to table
+    #   # Add followers' tweets to table
+    #   # Add followers' words to table
 
-      # response_body = get_follower_tweets(access_token, follower_id)
-    end
+    #   # response_body = get_follower_tweets(access_token, follower_id)
+    # end
 
 
 

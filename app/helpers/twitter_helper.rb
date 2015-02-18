@@ -63,7 +63,13 @@ module TwitterHelper
   end
 
   def get_tweets(access_token, twitter_uid)
+    # if a user set to private then just return [], same as if they have no tweets
+    # result = 
     access_token.get("https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=#{twitter_uid}&count=200&exclude_replies=true&include_rts=false").body
+    
+    # parsed_result = JSON.parse(result)
+
+    # parsed_result["error"].nil? ? result : "[]"
   end
 
   def split_tweet_into_words(tweet_text)
