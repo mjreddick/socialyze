@@ -5,20 +5,15 @@ class TwitterBuildUserData
   def perform(info_hash, user_id)
     # Create user access_token
     access_token = create_access_token(info_hash["token"], info_hash["secret"])
-
-    
+ 
     user = User.find(user_id) 
+
     ##### Add user's twitter account to twitter_account table #####
     user.build_twitter_account(twitter_uid: info_hash["uid"],token: info_hash["token"],secret: info_hash["secret"],username: info_hash["screen_name"],time_zone: info_hash["time_zone"]).save
-
 
     #### Add tweets to tweets table #####
     # get the response body with a user's tweets
     user_tweets = get_tweets(access_token, info_hash["uid"])
-    
-    puts "user_tweets >>>>>>>>>>>>>>>>"
-    p user_tweets
-    puts "user_tweets end <<<<<<<<<<<<<<<<<<<"
 
     JSON.parse(user_tweets).each do |item|
       tweet = user.twitter_account.tweets.build
@@ -43,34 +38,21 @@ class TwitterBuildUserData
       # item["entities"]["hashtags"]
       # item["entities"]["user_mentions"]
 
-      # Add code to save each tweet to tweet_text table
     end
 
     ##### Build followers table #####
     ##### Each follower - add to twitter account table, tweets, words #####
-    followers_data = send_followers_request(access_token, info_hash["screen_name"])
-
-    puts "followers_data >>>>>>>>>>>>>>>>>>>>"
-    p followers_data
-    puts "followers_data end <<<<<<<<<<<<<<<<<<<<<<"
+    followers_data = get_follower_ids(access_token, info_hash["screen_name"])
 
     JSON.parse(followers_data)["ids"].each do |follower_id|
-    #   # Get the tweets for that follower
-
-      puts "follower >>>>>>>>>>>>>>>>>>>>>>>"
-      p follower_id.class
-      p follower_id
-      puts "follower <<<<<<<<<<<<<<<<<<<<<<<"
-
+      # Get the tweets for that follower
       follower_tweets = get_tweets(access_token, follower_id)
       parsed_follower_tweets = JSON.parse(follower_tweets)
 
       # Only save a follower if they have tweets
       #   This is done to save an api call to get the additional info needed
       #   for that user such as username
-      puts "parsed_follower_tweets >>>>>>>>>>>>>>>>>>>"
-      puts parsed_follower_tweets
-      puts "parsed_follower_tweets END <<<<<<<<<<<<<<<<<<<<<"
+      # If the returned data is not an array then most likely you do not have access to that user's tweets
       unless parsed_follower_tweets.blank? || parsed_follower_tweets.class != Array
         # Use the data from the first tweet to build the follower's twitter account
         first_tweet = parsed_follower_tweets.first
@@ -94,26 +76,8 @@ class TwitterBuildUserData
               end
             end
           end
-
         end
-
       end
-      
-
-      
-
-
-      # Add followers' tweets to table
-      # Add followers' words to table
-
-      # response_body = get_follower_tweets(access_token, follower_id)
-    end
-
-
-
-    ##### Run analysis #####
-
-
-
-  end
-end
+    end # loop through followers
+  end # perform
+end # class
