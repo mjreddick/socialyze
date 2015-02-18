@@ -2,7 +2,7 @@ angular
   .module("socialyze")
   .controller("TwitterController", TwitterController);
 
-  TwitterController.$inject = ['$resource'];
+TwitterController.$inject = ['$resource'];
 
 
 // Angular Twitter Controller to control twitter angular template

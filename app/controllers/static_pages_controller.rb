@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   # include InstagramHelper # refactor into classes
 
   def home
+    @user = User.new
     # Display the returned hash in the view
     @test = request.env['omniauth.auth']
 

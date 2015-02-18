@@ -17,6 +17,7 @@ gem "omniauth-google-oauth2"
 
 gem 'rails_12factor'
 
+
 # Hide secret keys and consumer keys
 gem "figaro"
 

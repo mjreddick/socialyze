@@ -1,10 +1,38 @@
-<nav class="navbar navbar-inverse">
-  <div class="navbar-right">
-    <%= link_to "Log in", login_path, :class => "btn btn-primary", :remote => true, "data-toggle" => "modal", "data-target" => "#log-in" %>
+<nav class= "navbar navbar-inverse">
+<div class="container-fluid">
+  <div class="navbar-left">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <i class="fa fa-bars"></i>
+    </button>
+    <a class="navbar-brand">
+      image
+    </a>
   </div>
-
+  <div class="collapse navbar-collapse" id="myNavbar">
+  <% if logged_in? %>
+    <ul class="nav navbar-nav navbar-right">
+      <li>link</li>
+      <li>link</li>
+      <li class="dropdown" id ="nav-user-avatar">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.name %>
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li>Test link</li> 
+            <li>Test link</li>
+            <li>Test link</li>
+            <li class="divider"></li>
+            <li><%= link_to 'Log out', logout_path, method: :delete %></li>
+          </ul>
+      </li>
+    </ul>
+  <% else %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "Log in", login_path, :class => "btn btn-social", :id => "white-text", :remote => true, "data-toggle" => "modal", "data-target" => "#log-in" %></li>
+    </ul>
+    <% end %>
+  </div>
+</div>
 </nav>
-
 
 <div class="modal fade" id="log-in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
