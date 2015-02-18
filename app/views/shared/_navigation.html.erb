@@ -37,7 +37,15 @@
         <h2 class="modal-title text-center" id="myModalLabel"><i class="fa fa-2x fa-sign-in"></i></h2>
       </div>
       <div class="modal-body">
-        <%= render 'sessions/new' %>
+    <%= simple_form_for :login, :url => login_path, :method => :post do |f| %>
+
+    <%= f.input :email, placeholder: 'Enter your email' %>
+
+    <%= f.input :password, placeholder: "Your password" %>
+
+    <%= f.button :submit, "Log in", class: "btn btn-large btn-primary center-block" %>
+
+  <% end %>
       </div>
     </div>
   </div>
@@ -52,18 +60,22 @@
         <h2 class="modal-title text-center" id="myModalLabel"><i class="fa fa-2x fa-sign-in"></i></h2>
       </div>
       <div class="modal-body">
-  <%= simple_form_for (@current_user) do |f| %>
+        <%= simple_form_for (@current_user) do |f| %>
 
-    <%= f.input :name, placeholder: 'Your Name' %>
+          <%= f.input :name, placeholder: 'Your Name' %>
 
-    <%= f.input :email, placeholder: 'Your Email Address' %>
+          <%= f.input :email, placeholder: 'Your Email Address' %>
 
-    <%= f.input :password, placeholder: "Create a password" %>
+          <%= f.input :password, placeholder: "Create a password" %>
 
-    <%= f.input :password_confirmation, placeholder: "Verify Password" %>
+          <%= f.input :password_confirmation, placeholder: "Verify Password" %>
 
-    <%= f.button :submit, "Lets Go", :class => "btn btn-primary center-block" %>
-  <% end %>
+          <%= f.button :submit, "Lets Go", :class => "btn btn-primary center-block" %>
+        <% end %>
+        
+        <br>
+
+        <p class="text-center">Not happy? <%= link_to "Delete Your Account", @current_user, :url => user_path(@current_user), method: :delete, data: {confirm: "Are you sure you want to go?"} %></p>
       </div>
     </div>
   </div>

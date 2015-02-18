@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def destroy
     @user = current_user
     @user.destroy
-    session.delete[:user_id]
+    session.delete(:user_id)
     redirect_to root_path, notice: "Sad to see you go."
   end
 
