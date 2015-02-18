@@ -1,6 +1,7 @@
 class TwitterBuildUserData
   include Sidekiq::Worker
   include TwitterHelper
+  sidekiq_options :retry => 1
 
   def perform(info_hash, user_id)
     # Create user access_token
