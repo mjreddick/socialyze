@@ -1,2 +1,2 @@
-web: bundle exec thin
+web: bundle exec thin start
 worker: bundle exec sidekiq
