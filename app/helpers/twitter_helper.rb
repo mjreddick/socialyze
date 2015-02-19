@@ -67,4 +67,26 @@ module TwitterHelper
     word_array.reject { |word| word.length < 2 }
   end
 
+  ##########
+  # Analysis
+  ##########
+
+  # Get top 10 most used words by the current user
+  # Returns a hash where the key is a word and the value is the number of times that word is used
+  def get_users_most_used_words
+    TweetWord.where(twitter_account_id: current_user.twitter_account.id).group("word").order("count_word DESC").limit(10).count("word")
+  end
+
+  # Get the 10 least used words by the current user
+  # Returns a hash where the key is a word and the value is the number of times that word is used
+  def get_users_least_used_words
+    TweetWord.where(twitter_account_id: current_user.twitter_account.id).group("word").order("count_word ASC").limit(10).count("word")
+  end
+
+  # Decide if the current user is an early bird or not
+  # def early_bird?
+  #   # If at least half of your tweets occured from the hours of 6 to 18 (military time) then you're an early bird
+
+  # end
+
 end
