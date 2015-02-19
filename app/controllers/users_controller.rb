@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
   end
 
   def create
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id.to_s
-      redirect_to root_path, notice: 'Thanks for Signing up!'
+      redirect_to user_path(@user), notice: 'Thanks for Signing up!'
     else
       render :new, alert: "Oops something was wrong, please try again."
     end
