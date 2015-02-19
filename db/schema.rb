@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219032341) do
+ActiveRecord::Schema.define(version: 20150219051446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150219032341) do
     t.decimal  "followers_avg_tweet_length"
     t.decimal  "followers_avg_num_followers"
     t.decimal  "followers_avg_total_tweets"
+    t.text     "char_per_tweet"
   end
 
   add_index "twitter_results", ["user_id_id"], name: "index_twitter_results_on_user_id_id", using: :btree
