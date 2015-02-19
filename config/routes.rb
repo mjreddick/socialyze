@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:index, :show, :create, :edit, :destroy, :update]
+  get 'users/results' => 'users#results'
   get '/signup' => 'users#new'
   post '/signup' => 'sessions#create'
   get '/login' => 'sessions#new'
