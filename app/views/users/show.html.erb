@@ -1,14 +1,9 @@
-<% if @user.twitter_account || !@user.twitter_result  %>
+<% if @user.twitter_account != nil %>
 <div class="row text-center center-block" id="user-show-result">
   <h1 class="text-center">What's next?</h1>
   <h1><small>Your Socialytics are being processed</small></h1>
   <p>You will receive an email when your results are ready</p>
   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/animated_twitter_.gif", class: "img-responsive center-block") %>
-</div>
-<% elsif @user.twitter_result %>
-<div class="row text-center center-block" id="user-show-result">
-  <h1>Your Results Are Ready</h1>
-  <%= link_to("Click Here to See your results", result_path(@user.twitter_result)) %>
 </div>
 <% else %>
 <div class="row" id="user-show">

@@ -35,6 +35,16 @@ $backgroundDarkBlue: #0084b4;
   margin-top: 50px; 
   margin-bottom: 0;
   background-color: $backgroundDarkBlue;
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+  padding-top: 20px;
+  color: #fff;
+  h1  {
+    font-size: 5em;
+  }
+  small {
+    color: #c0deed;
+  }
 }
 
 .jumbotron {
