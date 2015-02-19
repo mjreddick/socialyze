@@ -4,9 +4,6 @@
 
 @import 'variables';
 
-h1 {
-  font-family: $fontOswald;
-}
 
 #signup {
   margin-left: 5px;
@@ -87,10 +84,14 @@ h1 {
   background-color: $backgroundDarkBlue;
   small {
     color: #fff;
-    font-family: $fontOswald;
+    font-family: $fontRoboto;
   }
 }
 
 #sample-graph {
   margin-bottom: 20px;
+  h1 {
+    font-family: $fontOswald;
+    color: $fontBlue;
+  }
 }

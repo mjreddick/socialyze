@@ -1,51 +1,58 @@
 <div class="row results-header text-center">
   <h1><%= @result.user.name %>'s Twitter Socialytics</h1>
-  <% if @result.early_bird = true %>
+  <% if @result.early_bird != true %>
   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/owl-512.png", class: "img-responsive center-block") %>
   <% else %>
-   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/Twitter_bird_icon.png", class: "img-responsive center-block") %>
+   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/earlybird.png", class: "img-responsive center-block") %>
   <% end %>
 </div>
 
-<div class="row bar-graph">
-  <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.most_used_words.to_json %>"></bar-graph>
+<div class="row bar-graph text-center">
+  <div class="user-bar-graph">
+    <h1>Most Tweeted Words</h1>
+    <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.most_used_words.to_json %>"></bar-graph>
+  </div>
+  <div class="follower-bar-graph">
+    <h1><%= @result.user.name %>'s Followers' Most Tweeted Words</h1>
+    <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.most_used_words.to_json %>"></bar-graph>
+  </div>
 </div>
 
 <div class="row results-table">
   <div class="col-md-5 col-md-offset-1 text-center">
-    <table class="table table-hover">
-      <tr><%= @result.user.name %>'s Analysis</tr>
+    <table class="table">
+      <tr><h2><%= @result.user.name %>'s Analysis</h2></tr>
       <tr>
-        <th class="text-center">hello</th>
-        <th class="text-center">what</th>
-        <th class="text-center">is</th>
-        <th class="text-center">this</th>
-        <th class="text-center">result</th>
-        <th class="text-center">doing</th>
+        <th class="text-center blue">hello</th>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
       </tr> 
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th class="text-center blue">hello</th>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
       </tr> 
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th class="text-center blue">hello</th>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
       </tr> 
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th class="text-center blue">hello</th>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
       </tr>
     </table>
   </div>
@@ -53,45 +60,50 @@
 
   <div class="col-md-5 text-center">
     <table class="table table-hover">
-      <tr><%= @result.user.name %>'s Follower's Analysis</tr>
+      <tr><h2><%= @result.user.name %>'s Follower's Analysis</h2></tr>
       <tr>
-        <th class="text-center">hello</th>
-        <th class="text-center">what</th>
-        <th class="text-center">is</th>
-        <th class="text-center">this</th>
-        <th class="text-center">result</th>
-        <th class="text-center">doing</th>
+        <th class="text-center blue">hello</th>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
       </tr> 
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th class="text-center blue">hello</th>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
       </tr> 
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th class="text-center blue">hello</th>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
+        <td class="med-blue">data</td>
       </tr> 
       <tr>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
-        <td>data</td>
+        <th class="text-center blue">hello</th>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
+        <td class="light-blue">data</td>
       </tr>
     </table>
   </div>
 </div>
-<div class="row pie-graph">
-  <pie-chart class="col-md-12 center-block text-center"></pie-chart>
+<div class="row pie-graph text-center">
+  <div class="user-pie-chart col-md-12">
+    <h2><%= @result.user.name %>'s Characters per Tweet</h2>
+    <br>
+    <pie-chart class="col-md-12 center-block text-center"></pie-chart>
+  </div>
 </div>
+
 
 
 
