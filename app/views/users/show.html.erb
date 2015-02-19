@@ -1,4 +1,10 @@
-<% if @user.twitter_account %>
+
+<% if @user.twitter_result%>
+<div class="row text-center center-block" id="user-show-result">
+  <h1>Your Results Are Ready</h1>
+  <p>Click <%= link_to("Here", result_path(@user.twitter_result)) %> to see your results!</p>
+</div>
+<% elsif !@user.twitter_account.nil? || !@user.twitter_result.nil?  %>
 <div class="row text-center center-block" id="user-show-result">
   <h1 class="text-center">What's next?</h1>
   <h1><small>Your Socialytics are being processed</small></h1>

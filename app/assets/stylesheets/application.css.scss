@@ -17,10 +17,8 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "variables";
 
-$fontBlue: #4099FF;
-$backgroundColor: #c0deed;
-$backgroundDarkBlue: #0084b4;
 body {
   background-color: $backgroundColor; 
 }
