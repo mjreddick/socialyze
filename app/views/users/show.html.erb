@@ -1,17 +1,17 @@
 <% if @user.twitter_account || !@user.twitter_result  %>
-<div class="jumbotron text-center center-block" id="user-show-resutl">
+<div class="row text-center center-block" id="user-show-result">
   <h1 class="text-center">What's next?</h1>
   <h1><small>Your Socialytics are being processed</small></h1>
   <p>You will receive an email when your results are ready</p>
   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/animated_twitter_.gif", class: "img-responsive center-block") %>
 </div>
 <% elsif @user.twitter_result %>
-<div class="jumbotron text-center center-block" id="user-show-resutl">
+<div class="row text-center center-block" id="user-show-result">
   <h1>Your Results Are Ready</h1>
   <%= link_to("Click Here to See your results", result_path(@user.twitter_result)) %>
 </div>
 <% else %>
-<div class="jumbotron" id="user-show">
+<div class="row" id="user-show">
   <h1 class="text-center">
     Get Started! 
     <br>
@@ -23,7 +23,7 @@
   </a>
 </div>
 <% end %>
-<div class="row text-center">
+<div class="row text-center" id="sample-graph">
 <h1>Take a look at some sample charts</h1>
   <div class="col-md-10 col-md-offset-1">
     <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -65,5 +65,15 @@
 </div>  
 
 <% if @user.twitter_account %>
+<div class="row" id="user-show-update">
+  <h1 class="text-center">
+    Update your Twitter Info!
+    <br>
+    <small>Authorize your Twitter Account</small>
+  </h1><br><br>
+  <a href="/auth/twitter">
+    <%= image_tag("http://icons.iconarchive.com/icons/sicons/flat-shadow-social/128/twitter-icon.png", :class => "img-responsive center-block") %>
+  </a>
+</div>
 
 <% end %>

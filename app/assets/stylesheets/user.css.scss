@@ -1,6 +1,7 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$backgroundDarkBlue: #0084b4;
 
 #signup {
   margin-left: 5px;
@@ -33,12 +34,39 @@
 #user-show {
   margin-top: 50px; 
   margin-bottom: 0;
+  background-color: $backgroundDarkBlue;
 }
 
 .jumbotron {
   margin-bottom: 0;
+  background-color: $backgroundDarkBlue;
 }
 
 #user-show-result {
   margin-top: 50px;
+  background-color: $backgroundDarkBlue;
+  margin-bottom: 20px;
+  padding-bottom: 40px;
+  padding-top: 20px;
+  color: #fff;
+  h1  {
+    font-size: 5em;
+  }
+  small {
+    color: #c0deed;
+  }
+}
+
+#user-show-update {
+  color: #fff;
+  padding-top: 50px;
+  padding-bottom: 75px;
+  background-color: $backgroundDarkBlue;
+  small {
+    color: #fff;
+  }
+}
+
+#sample-graph {
+  margin-bottom: 20px;
 }
