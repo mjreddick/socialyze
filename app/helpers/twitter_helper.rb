@@ -89,4 +89,12 @@ module TwitterHelper
 
   # end
 
+  def get_followers_most_used_words
+    TweetWord.joins("INNER JOIN twitter_follower_relationships ON tweet_words.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{current_user.twitter_account.id}").group("word").order("count_word DESC").limit(10).count("word")
+  end
+
+  def get_followers_least_used_words
+    TweetWord.joins("INNER JOIN twitter_follower_relationships ON tweet_words.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{current_user.twitter_account.id}").group("word").order("count_word ASC").limit(10).count("word")
+  end
+
 end

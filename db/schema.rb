@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219051446) do
+ActiveRecord::Schema.define(version: 20150219175514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20150219051446) do
   create_table "twitter_results", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id_id"
     t.text     "most_used_words"
     t.text     "least_used_words"
     t.boolean  "early_bird"
@@ -97,9 +96,10 @@ ActiveRecord::Schema.define(version: 20150219051446) do
     t.decimal  "followers_avg_num_followers"
     t.decimal  "followers_avg_total_tweets"
     t.text     "char_per_tweet"
+    t.integer  "user_id"
   end
 
-  add_index "twitter_results", ["user_id_id"], name: "index_twitter_results_on_user_id_id", using: :btree
+  add_index "twitter_results", ["user_id"], name: "index_twitter_results_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
