@@ -8,9 +8,8 @@
 <% elsif @user.twitter_result %>
 <div class="jumbotron text-center center-block" id="user-show-resutl">
   <h1>Your Results Are Ready</h1>
-  <%= link_to("Click Here to See your results", "/",) %>
+  <%= link_to("Click Here to See your results", result_path(@user.twitter_result)) %>
 </div>
-
 <% else %>
 <div class="jumbotron" id="user-show">
   <h1 class="text-center">
@@ -22,10 +21,10 @@
   <a href="/auth/twitter">
     <%= image_tag("http://icons.iconarchive.com/icons/sicons/flat-shadow-social/128/twitter-icon.png", :class => "img-responsive center-block") %>
   </a>
-  
 </div>
 <% end %>
-<div class="row">
+<div class="row text-center">
+<h1>Take a look at some sample charts</h1>
   <div class="col-md-10 col-md-offset-1">
     <div id="carousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
@@ -64,3 +63,7 @@
     </div>
   </div>
 </div>  
+
+<% if @user.twitter_account %>
+
+<% end %>
