@@ -13,6 +13,11 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def results
+    # Grab data from twitter results table
+    # @results = Results.find(current_user)
+  end
+
   def create
     @user = User.new(user_params)
 
