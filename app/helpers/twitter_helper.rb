@@ -77,10 +77,17 @@ module TwitterHelper
     TweetWord.where(twitter_account_id: current_user.twitter_account.id).group("word").order("count_word DESC").limit(10).count("word")
   end
 
+    TweetWord.where(mike.twitter_account.id).group("word").order("count_word DESC").limit(10).count("word")
+
   # Get the 10 least used words by the current user
   # Returns a hash where the key is a word and the value is the number of times that word is used
   def get_users_least_used_words
     TweetWord.where(twitter_account_id: current_user.twitter_account.id).group("word").order("count_word ASC").limit(10).count("word")
+  end
+
+
+  def get_followers_avg_tweet_length
+    Tweet.joins("INNER JOIN twitter_follower_relationships ON tweets.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{user.twitter_account.id}")
   end
 
   # Decide if the current user is an early bird or not
