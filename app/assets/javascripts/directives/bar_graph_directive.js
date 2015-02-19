@@ -13,14 +13,14 @@ function barGraph() {
     // attrs attributes of the element (contains the data we pass it)
     link: function(scope, element, attrs) {
       var data = [
-        {name: "Locke",    value:  4},
-        {name: "Reyes",    value:  8},
-        {name: "Ford",     value: 15},
-        {name: "Jarrah",   value: 16},
-        {name: "Shephard", value: 23},
-        {name: "Kwon",     value: 42},
-        {name: "Long",     value: 100},
-        {name: "Matt",     value: 200}
+        {name: "Attorneys",    value:  377},
+        {name: "Divorce",    value:  315},
+        {name: "Medicinal",     value: 207},
+        {name: "Paternity Test",   value: 3},
+        {name: "Angular", value: 115},
+        {name: "Ruby",     value: 168},
+        {name: "Rails",     value: 100},
+        {name: "Tech",     value: 200}
       ];
 
       values = [4, 8, 15, 16, 23, 42, 100, 20]
