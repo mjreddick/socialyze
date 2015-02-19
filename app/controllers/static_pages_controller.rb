@@ -16,6 +16,7 @@ class StaticPagesController < ApplicationController
       AnalyticsNotifier.send_data_ready_email(@current_user).deliver
       TwitterBuildUserData.perform_async(user_hash, current_user.id) # production
       # TwitterBuildUserData.perform_async(user_hash, 1)
+      redirect_to user_path(current_user)
     end
 
     # if request.env['omniauth.auth'] != nil && params[:provider] == 'instagram'

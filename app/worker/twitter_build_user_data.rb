@@ -31,7 +31,7 @@ class TwitterBuildUserData
         # if the save succeeded then the tweet is unique
         # break the tweet up into words and save those words
         words = split_tweet_into_words(item["text"])
-        puts tweet_words.inspect
+        # puts tweet_words.inspect
         words.each do |word|
           puts word
           # save each word unless it is a stop word
