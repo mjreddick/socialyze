@@ -3,11 +3,15 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:index, :show, :create, :edit, :destroy, :update]
+  get 'users/results' => 'users#results'
   get '/signup' => 'users#new'
   post '/signup' => 'sessions#create'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+
+  # Redirect from twitter callback_uri to remove params from url
+  get '/redirect' => 'static_pages#redirect'
 
   namespace :api, defaults: {format: "json"} do
     resources :twitter_accounts, only: [:index, :create]
