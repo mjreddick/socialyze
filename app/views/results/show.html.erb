@@ -1,1 +1,97 @@
-<h1> Results Page</h1>
+<div class="row results-header text-center">
+  <h1><%= @result.user.name %>'s Twitter Socialytics</h1>
+  <% if @result.early_bird = true %>
+  <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/owl-512.png", class: "img-responsive center-block") %>
+  <% else %>
+   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/Twitter_bird_icon.png", class: "img-responsive center-block") %>
+  <% end %>
+</div>
+
+<div class="row bar-graph">
+  <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.most_used_words.to_json %>"></bar-graph>
+</div>
+
+<div class="row results-table">
+  <div class="col-md-5 col-md-offset-1 text-center">
+    <table class="table table-hover">
+      <tr><%= @result.user.name %>'s Analysis</tr>
+      <tr>
+        <th class="text-center">hello</th>
+        <th class="text-center">what</th>
+        <th class="text-center">is</th>
+        <th class="text-center">this</th>
+        <th class="text-center">result</th>
+        <th class="text-center">doing</th>
+      </tr> 
+      <tr>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+      </tr> 
+      <tr>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+      </tr> 
+      <tr>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="col-md-5 text-center">
+    <table class="table table-hover">
+      <tr><%= @result.user.name %>'s Follower's Analysis</tr>
+      <tr>
+        <th class="text-center">hello</th>
+        <th class="text-center">what</th>
+        <th class="text-center">is</th>
+        <th class="text-center">this</th>
+        <th class="text-center">result</th>
+        <th class="text-center">doing</th>
+      </tr> 
+      <tr>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+      </tr> 
+      <tr>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+      </tr> 
+      <tr>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+        <td>data</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row pie-graph">
+  <pie-chart class="col-md-12 center-block text-center"></pie-chart>
+</div>
+
+
+
