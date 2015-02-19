@@ -79,8 +79,6 @@ module TwitterHelper
     TweetWord.where(twitter_account_id: current_user.twitter_account.id).group("word").order("count_word DESC").limit(10).count("word")
   end
 
-    TweetWord.where(mike.twitter_account.id).group("word").order("count_word DESC").limit(10).count("word")
-
   # Get the 10 least used words by the current user
   # Returns a hash where the key is a word and the value is the number of times that word is used
   def get_users_least_used_words
