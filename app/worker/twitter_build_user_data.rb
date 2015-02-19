@@ -40,7 +40,7 @@ class TwitterBuildUserData
       tweet.tweet_text = item["text"]
       tweet.twitter_tweet_id = item["id_str"]
 
-      if tweet.save!
+      if tweet.save
         ##### Build words table #####
         # if the save succeeded then the tweet is unique
         # break the tweet up into words and save those words
