@@ -1,4 +1,69 @@
-<div ng-view></div>
+<div class="jumbotron" id="home-splash">
+
+  <img src="https://s3-us-west-1.amazonaws.com/socialyze/socialyze2.png" class="img-responsive center-block" id="home-logo">
+  <h1 class="text-center" id="glyphs">
+    <i class="fa fa-2x fa-area-chart"></i>&nbsp;
+    <i class="fa fa-2x fa-bar-chart"></i>&nbsp;
+    <i class="fa fa-2x fa-line-chart"></i>
+  </h1>
+  <h1 class="text-center">Social Media Analytics</h1>
+  <% if @current_user %>
+    <%= link_to("Socialyze your account", user_path(@current_user) , :class => "btn btn-social center-block btn-lg") %>
+  <% else %>
+    <button type="button" class="btn btn-social btn-lg center-block" data-toggle="modal" data-target="#sign-up">
+      Sign up
+    </button>
+  
+  <% end %>
+</div>
+
+<div class="row what">
+  <div class="col-sm-4 icon">
+    <img src="https://s3-us-west-1.amazonaws.com/socialyze/Flat_Icons_5.png" class="img-responsive center-block">
+    <h1 class="text-center">Analyze</h1>
+    <p class="text-center">Let us analyze your social media accounts</p>
+  </div>
+  <div class="col-sm-4 icon">
+    <img src="https://s3-us-west-1.amazonaws.com/socialyze/Flat_Icons_21.png" class="img-responsive center-block">
+    <h1 class="text-center">Socialyze</h1>
+    <p class="text-center">We contact businesses that want to advertise to your followers</p>
+  </div>
+  <div class="col-sm-4 icon">
+    <img src="https://s3-us-west-1.amazonaws.com/socialyze/Flat_Icons_16.png" class="center-block">
+    <h1 class="text-center">Monetyze</h1>
+    <p class="text-center">Get paid to share to your friends!</p>
+  </div>
+  
+</div>
+
+<div class="modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title text-center" id="myModalLabel"><i class="fa fa-3x fa-user-plus"></i></h2>
+      </div>
+      <div class="modal-body">
+        <div class="user-form">
+          <%= simple_form_for @user, :url => users_path, :method => :post do |f| %>
+
+          <%= f.input :name, placeholder: 'Your Name' %>
+
+          <%= f.input :email, placeholder: 'Your Email Address' %>
+
+          <%= f.input :password, placeholder: "Create a password" %>
+
+          <%= f.input :password_confirmation, placeholder: "Verify Password" %>
+
+          <%= f.button :submit, "Lets Go", :class => "btn btn-primary center-block" %>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div ng-controller="SocialyzeController as main">
 

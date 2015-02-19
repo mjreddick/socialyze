@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217052030) do
+ActiveRecord::Schema.define(version: 20150219051446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 20150217052030) do
     t.datetime "updated_at"
     t.integer  "twitter_account_id"
     t.string   "twitter_tweet_id"
+    t.integer  "word_count"
+    t.integer  "character_count"
+    t.integer  "hour"
   end
 
   add_index "tweets", ["twitter_account_id"], name: "index_tweets_on_twitter_account_id", using: :btree
@@ -61,6 +64,8 @@ ActiveRecord::Schema.define(version: 20150217052030) do
     t.datetime "updated_at"
     t.string   "username"
     t.string   "time_zone"
+    t.integer  "num_followers"
+    t.integer  "total_num_tweets"
   end
 
   add_index "twitter_accounts", ["user_id"], name: "index_twitter_accounts_on_user_id", using: :btree
@@ -74,6 +79,27 @@ ActiveRecord::Schema.define(version: 20150217052030) do
 
   add_index "twitter_follower_relationships", ["followee_id"], name: "index_twitter_follower_relationships_on_followee_id", using: :btree
   add_index "twitter_follower_relationships", ["follower_id"], name: "index_twitter_follower_relationships_on_follower_id", using: :btree
+
+  create_table "twitter_results", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id_id"
+    t.text     "most_used_words"
+    t.text     "least_used_words"
+    t.boolean  "early_bird"
+    t.decimal  "avg_tweet_length"
+    t.integer  "num_followers"
+    t.integer  "total_tweets"
+    t.text     "followers_most_used_words"
+    t.text     "followers_least_used_words"
+    t.boolean  "followers_early_bird"
+    t.decimal  "followers_avg_tweet_length"
+    t.decimal  "followers_avg_num_followers"
+    t.decimal  "followers_avg_total_tweets"
+    t.text     "char_per_tweet"
+  end
+
+  add_index "twitter_results", ["user_id_id"], name: "index_twitter_results_on_user_id_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"

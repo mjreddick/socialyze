@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_one :twitter_account
   has_one :api_key, dependent: :destroy
+  has_one :twitter_result
   has_secure_password
   before_create :create_api_key
 
