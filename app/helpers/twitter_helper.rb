@@ -26,6 +26,8 @@ module TwitterHelper
     user_hash[:secret]      = omniauth_hash.credentials.secret
     user_hash[:name]        = omniauth_hash.info.name
     user_hash[:time_zone]   = omniauth_hash.extra.time_zone
+    user_hash[:num_followers] = omniauth_hash.extra.raw_info.followers_count
+    user_hash[:total_num_tweets] = omniauth_hash.extra.raw_info.statuses_count
 
     user_hash
   end
