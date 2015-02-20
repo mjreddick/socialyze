@@ -59,7 +59,7 @@ function barGraph() {
             .attr("x", 500)
             .attr("dy", "3em")
             .style("text-anchor", "end")
-            .text("Frequency");
+            .text("Words");
 
         svg.append("g")
             .attr("class", "y axis")
