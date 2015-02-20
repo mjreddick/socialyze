@@ -73,6 +73,9 @@
     color: #fff;
     a {
       color: $fontBlue;
+      p & :hover {
+        text-decoration: none;
+      }
     }
   }
 }
