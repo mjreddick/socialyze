@@ -65,29 +65,6 @@
 </div>
 
 
-<div ng-controller="SocialyzeController as main">
-
-{{main.test}}
-</div>
-
-<div ng-controller="AuthenticationController as auth">
-        <form class="login-form" ng-submit="auth.login()" ng-if="!auth.isAuthenticated">
-            <input class="login-input" type="text" placeholder="email" ng-model="auth.email">
-            <input class="login-input" type="password" placeholder="password" ng-model="auth.password">
-            <input type="submit" value="Log in" class="btn btn-submit">
-        </form>
-
-         <!-- begin log out button -->
-        <button ng-if="auth.isAuthenticated" class="btn btn-submit" ng-click="auth.logout()">Log out</button>
-        <!-- end log out button -->
-</div>
-
-<div>
-  <%= link_to "Twitter", "#/twitter" %>
-</div>
-
-
-
 
 
 

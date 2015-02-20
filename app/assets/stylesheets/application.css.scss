@@ -20,7 +20,8 @@
 @import "variables";
 
 body {
-  background-color: $backgroundColor; 
+  background-color: $backgroundColor;
+  font-family: $fontOswald;
 }
 
 
@@ -40,6 +41,10 @@ margin-bottom: 0;
   }
 }
 
+.nav-link {
+  float: left;
+}
+
 
 .dropdown-menu {
   li {
@@ -49,6 +54,7 @@ margin-bottom: 0;
 
 .btn-social {
   background-color: $fontBlue;
+  color: #fff;
 }
 
 #white-text {

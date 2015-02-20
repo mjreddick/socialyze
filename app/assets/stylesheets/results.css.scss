@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
+h2 {
+  font-family: $fontOswald; 
+}
+
 .results-header {
   margin-top: 50px;
   color: #fff;
@@ -19,12 +23,22 @@
   margin-top: 20px;
   padding-top: 50px;
   padding-bottom: 50px;
+    h2 {
+    font-family: $fontOswald;
+    font-size: 4em;
+    color: $fontBlue;
+  }
 }
 
 .bar-graph {
   margin-top: 20px;
   padding-top: 50px;
   padding-bottom: 50px;
+  h1 {
+    font-family: $fontOswald;
+    font-size: 4em;
+    color: $fontBlue;
+  }
 }
 
 .results-table {
@@ -34,4 +48,17 @@
   padding-bottom: 50px;
   padding-left: 10px;
   padding-right: 10px;
+  h2 {
+    color: white;
+    font-family: $fontOswald; 
+  }
+  .blue {
+    background-color: $backgroundColor;
+  }
+  .med-blue {
+    background-color: $medBlue;
+  }
+  .light-blue {
+    background-color: $fontBlue;
+  }
 }
