@@ -8,17 +8,35 @@ angular.module('socialyze')
                 pieChartData: '='
             },
             link: function(scope, element, attrs) {
-                // Use set of colors given by d3
-                var color = d3.scale.category10();
+                // Use color set given by d3
+                var color = d3.scale.category20();
 
-pieChartData = [1,2,3,4];
+                // Delete keys in object if value is 0
+                for(var key in scope.pieChartData) {
+                    if(scope.pieChartData[key] === 0) {
+                        delete scope.pieChartData[key]
+                    }
+                }
+
+                // Separate object's keys and values into arrays
+                var keys = Object.keys(scope.pieChartData)
+
+                var values = [];
+                for(var i = 0; i < keys.length; i++) {
+                    // Push values
+                    values.push(scope.pieChartData[keys[i]])
+                }
+
+                // Start to build pie chart
                 var pieChart = d3.select("pie-chart")
                 var svg = pieChart.append("svg")
 
                 // Based on the data given, generate starting and 
                 // ending angles for each wedge/data piece
                 var pie = d3.layout.pie();
-                var pieAngles = pie(pieChartData)
+                // var pieAngles = pie(scope.pieChartData)
+                var pieAngles = pie(values);
+
 
                 // Define and set dimensions of svg
                 var w = 400;
@@ -54,8 +72,8 @@ pieChartData = [1,2,3,4];
                         return "translate(" + arc.centroid(d) + ")";
                     })
                     .attr("text-anchor", "middle")
-                    .text(function(d) {
-                        return d.value
+                    .text(function(d,i) {
+                        return keys[i].replace("char_", "").replace("_", "-")
                     });
             } // end of link 
         }; // end of return
