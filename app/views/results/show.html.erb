@@ -100,7 +100,7 @@
   <div class="user-pie-chart col-md-12">
     <h2><%= @result.user.name %>'s Characters per Tweet</h2>
     <br>
-    <pie-chart class="col-md-12 center-block text-center"></pie-chart>
+    <pie-chart pie-chart-data="<%= @result.char_per_tweet %>" class="col-md-12 center-block text-center"></pie-chart>
   </div>
 </div>
 
