@@ -24,7 +24,9 @@ body {
   font-family: $fontOswald;
 }
 .flash-message {
-  margin-top: 55px;
+  position: fixed;
+  top: 55px;
+  right: 5px;
 }
 
 // #####################################################
