@@ -13,7 +13,7 @@
 
 <div class="row bar-graph text-center">
   <div class="user-bar-graph">
-    <h1>Most Tweeted Words</h1>
+    <h1><%= @result.user.name %>'s Most Tweeted Words</h1>
     <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.most_used_words %>"></bar-graph>
   </div>
   <div class="follower-bar-graph">
