@@ -22,7 +22,7 @@ function barGraph() {
         values.push(data[i].value);
       }
 
-      var margin = {top: 20, right: 20, bottom: 50, left: 60},
+      var margin = {top: 45, right: 20, bottom: 70, left: 60},
           width = 960 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
@@ -58,6 +58,7 @@ function barGraph() {
           .append("text")
             .attr("x", 500)
             .attr("dy", "3em")
+            .attr("font-size", "1.5em")
             .style("text-anchor", "end")
             .text("Words");
 
@@ -65,8 +66,9 @@ function barGraph() {
             .attr("class", "y axis")
             .call(yAxis)
           .append("text")
-            .attr("y", -20)
+            .attr("y", -40)
             .attr("dy", ".71em")
+            .attr("font-size", "1.5em")
             .style("text-anchor", "end")
             .text("Count");
 
