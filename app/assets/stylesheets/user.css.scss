@@ -1,7 +1,12 @@
 // Place all the styles related to the user controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-$backgroundDarkBlue: #0084b4;
+
+@import 'variables';
+
+h1 {
+  font-family: $fontOswald;
+}
 
 #signup {
   margin-left: 5px;
@@ -16,6 +21,7 @@ $backgroundDarkBlue: #0084b4;
   padding-top: 10px;
   h1 {
     color: #000;
+    font-family: $fontOswald;
   }
 }
 
@@ -40,6 +46,7 @@ $backgroundDarkBlue: #0084b4;
   color: #fff;
   h1  {
     font-size: 5em;
+    font-family: $fontOswald;
   }
   small {
     color: #c0deed;
@@ -60,9 +67,16 @@ $backgroundDarkBlue: #0084b4;
   color: #fff;
   h1  {
     font-size: 5em;
+    font-family: $fontOswald;
   }
   small {
     color: #c0deed;
+  }
+  p {
+    color: #fff;
+    a {
+      color: $fontBlue;
+    }
   }
 }
 
@@ -73,6 +87,7 @@ $backgroundDarkBlue: #0084b4;
   background-color: $backgroundDarkBlue;
   small {
     color: #fff;
+    font-family: $fontOswald;
   }
 }
 

@@ -1,3 +1,37 @@
 // Place all the styles related to the results controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'variables';
+
+.results-header {
+  margin-top: 50px;
+  color: #fff;
+  background-color: $backgroundDarkBlue;
+  font-family: $fontOswald;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  h1 {
+    font-size: 5em;
+  }
+}
+
+.pie-graph {
+  margin-top: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.bar-graph {
+  margin-top: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.results-table {
+  margin-top: 20px;
+  background-color: $backgroundDarkBlue;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

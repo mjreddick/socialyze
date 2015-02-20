@@ -1,6 +1,7 @@
 class TwitterBuildUserData
   include Sidekiq::Worker
   include TwitterHelper
+  include TwitterResultHelper
   sidekiq_options :retry => 1
 
   def perform(info_hash, user_id)
@@ -134,5 +135,33 @@ class TwitterBuildUserData
         end # if/else follower already existed
       end # unless to check if the returned follower data is good
     end # loop through followers
+
+    # Make the twitter_results for this user
+    result = user.build_twitter_result
+    # add the results to the table
+    result.most_used_words = get_users_most_used_words(user).to_json
+    result.least_user_words = get_users_least_used_words(user).to_json
+    result.early_bird = calculate_early_bird(user)
+    result.avg_tweet_length = avg_tweet_length(user)
+    result.num_followers = num_followers(user)
+    result.total_tweets = total_tweets(user)
+    result.followers_most_used_words = get_followers_most_used_words(user).to_json
+    result.followers_least_used_words = get_followers_least_used_words(user).to_json
+    result.followers_avg_tweet_length = get_followers_avg_tweet_length(user)
+    result.followers_avg_num_followers = followers_avg_num_followers(user)
+    result.followers_avg_total_tweets = followers_avg_total_tweets(user)
+    result.char_per_tweet = char_per_tweet(user).to_json
+
+    # save the results
+    result.save
+    
+    # Send email to user about their results being ready
+    AnalyticsNotifier.send_data_ready_email(user).deliver
+
   end # perform
 end # class
+
+
+
+
+
