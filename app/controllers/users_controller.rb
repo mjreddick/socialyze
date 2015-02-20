@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include TwitterHelper
 
   def index
-
+    @user = current_user
   end
 
   def new

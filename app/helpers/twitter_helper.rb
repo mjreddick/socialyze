@@ -100,7 +100,7 @@ module TwitterHelper
 
 
   def get_followers_avg_tweet_length(user)
-    Tweet.joins("INNER JOIN twitter_follower_relationships ON tweets.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{user.twitter_account.id}")
+    user.twitter_account.followers.average("character_count").to_f.round(2)
   end
 
   # Decide if the current user is an early bird or not
@@ -117,4 +117,25 @@ module TwitterHelper
     TweetWord.joins("INNER JOIN twitter_follower_relationships ON tweet_words.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{user.twitter_account.id}").group("word").order("count_word ASC").limit(10).count("word")
   end
 
+  def calculate_early_bird(user)
+    # Count total number of user's tweets
+    total_tweets = user.twitter_account.tweets.count
+
+    return nil if total_tweets.zero?
+
+    total_early_tweets = user.twitter_account.tweets.where(hour: 6..18).count
+
+    # Percentage of total tweets that were early tweets
+    percentage = (total_early_tweets.to_f) / (total_tweets.to_f) * 100
+
+    # user.twitter_result.save!
+    percentage >= 50
+  end # end of calculate_early_bird
+
+  def avg_tweet_length(user)
+    # length = Tweet.where("twitter_account_id = #{twitter_account_id}").average("character_count").to_f.round(2)
+
+    # ssave length to results table
+    user.twitter_account.tweets.average("character_count").to_f.round(2)
+  end
 end
