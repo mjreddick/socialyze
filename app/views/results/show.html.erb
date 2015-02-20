@@ -14,11 +14,11 @@
 <div class="row bar-graph text-center">
   <div class="user-bar-graph">
     <h1>Most Tweeted Words</h1>
-    <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.most_used_words.to_json %>"></bar-graph>
+    <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.most_used_words %>"></bar-graph>
   </div>
   <div class="follower-bar-graph">
     <h1><%= @result.user.name %>'s Followers' Most Tweeted Words</h1>
-    <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.most_used_words.to_json %>"></bar-graph>
+    <bar-graph class="col-md-12 center-block text-center" bar-graph-data="<%= @result.followers_most_used_words %>"></bar-graph>
   </div>
 </div>
 
@@ -104,7 +104,7 @@
   <div class="user-pie-chart col-md-12">
     <h2><%= @result.user.name %>'s Characters per Tweet</h2>
     <br>
-    <pie-chart class="col-md-12 center-block text-center"></pie-chart>
+    <pie-chart pie-chart-data="<%= @result.char_per_tweet %>" class="col-md-12 center-block text-center"></pie-chart>
   </div>
 </div>
 

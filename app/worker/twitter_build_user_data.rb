@@ -140,7 +140,7 @@ class TwitterBuildUserData
     result = user.build_twitter_result
     # add the results to the table
     result.most_used_words = get_users_most_used_words(user).to_json
-    result.least_user_words = get_users_least_used_words(user).to_json
+    result.least_used_words = get_users_least_used_words(user).to_json
     result.early_bird = calculate_early_bird(user)
     result.avg_tweet_length = avg_tweet_length(user)
     result.num_followers = num_followers(user)
