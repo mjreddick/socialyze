@@ -2,8 +2,12 @@
   <h1><%= @result.user.name %>'s Twitter Socialytics</h1>
   <% if @result.early_bird != true %>
   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/owl-512.png", class: "img-responsive center-block") %>
+  <h2>Congrats!<br><small>You're an night owl tweeter</small></h2>
+  <p>The majority of your tweets fall between 6pm to 6am</p>
   <% else %>
-   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/earlybird2.png", class: "img-responsive center-block") %>
+   <%= image_tag("https://s3-us-west-1.amazonaws.com/socialyze/earlybird3.png", class: "img-responsive center-block") %>
+   <h2>Congrats!<br><small>You're an early bird tweeter</small></h2>
+  <p>The majority of your tweets fall between 6am to 6pm</p>
   <% end %>
 </div>
 
