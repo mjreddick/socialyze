@@ -22,42 +22,24 @@
   </div>
 </div>
 
+
+
 <div class="row results-table">
   <div class="col-md-5 col-md-offset-1 text-center">
     <table class="table">
       <tr><h2><%= @result.user.name %>'s Analysis</h2></tr>
       <tr>
-        <th class="text-center blue">hello</th>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
+        <th class="text-center blue">Avg Tweet Length</th>
+        <td class="med-blue"><%= @result.avg_tweet_length %></td>
       </tr> 
       <tr>
-        <th class="text-center blue">hello</th>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
+        <th class="text-center blue">Total Tweets</th>
+        <td class="light-blue"><%= @result.total_tweets %></td>
       </tr> 
       <tr>
-        <th class="text-center blue">hello</th>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
+        <th class="text-center blue">Number of Followers</th>
+        <td class="med-blue"><%= @result.num_followers %></td>
       </tr> 
-      <tr>
-        <th class="text-center blue">hello</th>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-      </tr>
     </table>
   </div>
 
@@ -66,37 +48,17 @@
     <table class="table table-hover">
       <tr><h2><%= @result.user.name %>'s Follower's Analysis</h2></tr>
       <tr>
-        <th class="text-center blue">hello</th>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
+        <th class="text-center blue">Follower's Avg Tweet Length</th>
+        <td class="med-blue"><%= @result.followers_avg_tweet_length %></td>
       </tr> 
       <tr>
-        <th class="text-center blue">hello</th>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
+        <th class="text-center blue">Follower's Avg Total Tweets</th>
+        <td class="light-blue"><%= @result.followers_avg_total_tweets %></td>
       </tr> 
       <tr>
-        <th class="text-center blue">hello</th>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
-        <td class="med-blue">data</td>
+        <th class="text-center blue">Follower's Avg Number of Followers</th>
+        <td class="med-blue"><%= @result.followers_avg_num_followers %></td>
       </tr> 
-      <tr>
-        <th class="text-center blue">hello</th>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-        <td class="light-blue">data</td>
-      </tr>
     </table>
   </div>
 </div>
