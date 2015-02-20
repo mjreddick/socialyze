@@ -49,8 +49,6 @@ module RandomHelper
 
 
   def char_per_tweet(user)
-    # Tweets - twitter_account_id
-    # all_tweets = TwitterAccount.find_by(user_id: user.id).tweets
     char_1_20     = Tweet.where(character_count: 1..20).where(twitter_account_id: user.twitter_account.id).count
     char_21_40    = Tweet.where(character_count: 21..40).where(twitter_account_id: user.twitter_account.id).count
     char_41_60    = Tweet.where(character_count: 41..60).where(twitter_account_id: user.twitter_account.id).count
@@ -58,6 +56,7 @@ module RandomHelper
     char_81_100   = Tweet.where(character_count: 81..100).where(twitter_account_id: user.twitter_account.id).count
     char_101_120  = Tweet.where(character_count: 101..120).where(twitter_account_id: user.twitter_account.id).count
     char_121_140  = Tweet.where(character_count: 121..140).where(twitter_account_id: user.twitter_account.id).count
+    
     char_per_tweet_hsh = {
       char_1_20: char_1_20,
       char_21_40: char_21_40,
@@ -67,6 +66,7 @@ module RandomHelper
       char_101_120: char_101_120,
       char_121_140: char_121_140
     }
+    
     char_per_tweet_hsh
   end # end of char_per_tweet
 
