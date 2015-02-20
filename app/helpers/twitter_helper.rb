@@ -47,6 +47,19 @@ module TwitterHelper
     access_token.get("https://api.twitter.com/1.1/statuses/user_timeline.json?user_id=#{twitter_uid}&count=200&exclude_replies=true&include_rts=false").body
   end
 
+  def get_tweet_hour(item)
+    time_stamp = item["created_at"]
+    utc_offset = item["user"]["utc_offset"]
+    if time_stamp.blank? || utc_offset.blank?
+      return nil
+    else
+      offset = utc_offset.to_i
+      time = DateTime.parse(time_stamp)
+      time = time + offset.second
+      return time.hour
+    end
+  end
+
   def split_tweet_into_words(tweet_text)
     # regex to detect links
     link_regex = /(http)\S*/i
@@ -75,18 +88,18 @@ module TwitterHelper
 
   # Get top 10 most used words by the current user
   # Returns a hash where the key is a word and the value is the number of times that word is used
-  def get_users_most_used_words
-    TweetWord.where(twitter_account_id: current_user.twitter_account.id).group("word").order("count_word DESC").limit(10).count("word")
+  def get_users_most_used_words(user)
+    TweetWord.where(twitter_account_id: user.twitter_account.id).group("word").order("count_word DESC").limit(10).count("word")
   end
 
   # Get the 10 least used words by the current user
   # Returns a hash where the key is a word and the value is the number of times that word is used
-  def get_users_least_used_words
-    TweetWord.where(twitter_account_id: current_user.twitter_account.id).group("word").order("count_word ASC").limit(10).count("word")
+  def get_users_least_used_words(user)
+    TweetWord.where(twitter_account_id: user.twitter_account.id).group("word").order("count_word ASC").limit(10).count("word")
   end
 
 
-  def get_followers_avg_tweet_length
+  def get_followers_avg_tweet_length(user)
     Tweet.joins("INNER JOIN twitter_follower_relationships ON tweets.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{user.twitter_account.id}")
   end
 
@@ -96,12 +109,12 @@ module TwitterHelper
 
   # end
 
-  def get_followers_most_used_words
-    TweetWord.joins("INNER JOIN twitter_follower_relationships ON tweet_words.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{current_user.twitter_account.id}").group("word").order("count_word DESC").limit(10).count("word")
+  def get_followers_most_used_words(user)
+    TweetWord.joins("INNER JOIN twitter_follower_relationships ON tweet_words.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{user.twitter_account.id}").group("word").order("count_word DESC").limit(10).count("word")
   end
 
-  def get_followers_least_used_words
-    TweetWord.joins("INNER JOIN twitter_follower_relationships ON tweet_words.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{current_user.twitter_account.id}").group("word").order("count_word ASC").limit(10).count("word")
+  def get_followers_least_used_words(user)
+    TweetWord.joins("INNER JOIN twitter_follower_relationships ON tweet_words.twitter_account_id = twitter_follower_relationships.follower_id AND twitter_follower_relationships.followee_id = #{user.twitter_account.id}").group("word").order("count_word ASC").limit(10).count("word")
   end
 
 end
