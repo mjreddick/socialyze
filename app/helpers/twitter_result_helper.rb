@@ -19,18 +19,14 @@ module TwitterResultHelper
 
   # Decimal
   def followers_avg_num_followers(user)
-    total = 0
-    followers = TwitterAccount.find_by(user_id: user.id).followers
-    followers_count = followers.length
-    followers.each do |follower|
-      total += follower.num_followers
-    end
-    avarge_num_followers = total.to_f / followers_count.to_f
+    average = TwitterAccount.find_by(user_id: user.id).followers.average("num_followers").to_f.round(2)
+    average
   end
 
   # Decimal
-  def followers_avg_total_tweets
-
+  def followers_avg_total_tweets(user)
+    average = TwitterAccount.find_by(user_id: user.id).followers.average("total_num_tweets").to_f.round(2)
+    average
   end
 
 end # end Module
