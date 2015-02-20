@@ -18,8 +18,14 @@ module TwitterResultHelper
   end
 
   # Decimal
-  def followers_avg_num_followers
-
+  def followers_avg_num_followers(user)
+    total = 0
+    followers = TwitterAccount.find_by(user_id: user.id).followers
+    followers_count = followers.length
+    followers.each do |follower|
+      total += follower.num_followers
+    end
+    avarge_num_followers = total.to_f / followers_count.to_f
   end
 
   # Decimal
