@@ -12,10 +12,13 @@ function barGraph() {
     // attrs attributes of the element (contains the data we pass it)
     link: function(scope, element, attrs) {
 
+      console.log("SCOPE", scope.barGraphData)
+
       var data = scope.barGraphData;
       var values = [];
       
       for(var i = 0; i < data.length; i++) {
+        console.log(data[i]);
         values.push(data[i].value);
       }
 
