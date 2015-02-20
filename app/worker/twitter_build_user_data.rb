@@ -15,18 +15,22 @@ class TwitterBuildUserData
 
     if account
       # the user's twitter account already exists on our site
-      # so add the releation and all other data to the user's account
+      # so connect the user to the their twitter account
       account.user = user
-      account.token = info_hash["token"]
-      account.secret = info_hash["secret"]
-      account.time_zone = info_hash["time_zone"]
+      
     else
       # The user does not already have a twitter account saved in our database so make one
-      account = user.build_twitter_account(twitter_uid: info_hash["uid"],token: info_hash["token"],secret: info_hash["secret"],username: info_hash["screen_name"],time_zone: info_hash["time_zone"])
+      account = user.build_twitter_account(twitter_uid: info_hash["uid"])
       
-      # user.save!
     end
-    account.save!
+    account.token = info_hash["token"]
+    account.secret = info_hash["secret"]
+    account.time_zone = info_hash["time_zone"]
+    account.username = info_hash["screen_name"]
+    account.num_followers = info_hash["num_followers"]
+    account.total_num_tweets = info_hash["total_num_tweets"]
+
+    account.save
 
 
     #### Add tweets to tweets table #####
@@ -39,6 +43,8 @@ class TwitterBuildUserData
       tweet = user.twitter_account.tweets.build
       tweet.tweet_text = item["text"]
       tweet.twitter_tweet_id = item["id_str"]
+      tweet.character_count = item["text"].length
+      tweet.hour = get_tweet_hour(item)
 
       if tweet.save
         ##### Build words table #####
@@ -100,7 +106,7 @@ class TwitterBuildUserData
           # the follower's twitter account does not exist
 
           # Create twitter_account and relationships
-          follower_account = user.twitter_account.followers.create!(twitter_uid: first_tweet["user"]["id_str"], username: first_tweet["user"]["screen_name"])
+          follower_account = user.twitter_account.followers.create(twitter_uid: first_tweet["user"]["id_str"], username: first_tweet["user"]["screen_name"], num_followers: first_tweet["user"]["followers_count"], total_num_tweets: first_tweet["user"]["statuses_count"])
 
           puts "Created follower account"
 
@@ -110,6 +116,8 @@ class TwitterBuildUserData
               tweet = follower_account.tweets.build
               tweet.tweet_text = item["text"]
               tweet.twitter_tweet_id = item["id_str"]
+              tweet.character_count = item["text"].length
+              tweet.hour = get_tweet_hour(item)
 
               if tweet.save
                 ##### Build words table #####
