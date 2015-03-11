@@ -50,12 +50,12 @@ angular.module('socialyze')
 
 
                 // Define and set dimensions of svg
-                var w = 600;
+                var w = 900;
                 var h = 600;
                 svg.attr("width",w).attr("height", h);
 
                 // Define dimensions of pie chart (the circle)
-                var outerRadius = w/4;
+                var outerRadius = w/5;
                 var innerRadius = 0;  // it's zero because it's a pie, not a donut
 
                 // Create wedges based on the data(starting and ending angles,etc)
@@ -64,7 +64,7 @@ angular.module('socialyze')
                             .enter()
                             .append('g')
                             .attr("class", "arc")
-                            .attr("transform", "translate(" + w/2 + "," + h/2 +")");
+                            .attr("transform", "translate(" + w/2.5 + "," + h/2 +")");
 
                 // d3.svg.arc() constructs a new arc generator
                 var arc = d3.svg.arc()
@@ -77,64 +77,71 @@ angular.module('socialyze')
                     .attr('fill', function(d,i) { return color(i)})
                     .attr('d', arc)
                     .on('mouseenter', function(d,i) {
-                        var path = d3.select(this)
-                        path
-                            .attr('fill', d3.rgb(path.style("fill")).brighter(0.38))
-                    })
-                    .on('mouseleave', function(d,i) {
-                        var path = d3.select(this)
-                        path
-                            .attr('fill', color(i))
-                    });
+                        var parent  = d3.select(this.parentNode)
+                        var path    = d3.select(this)
+                        var c       = arc.centroid(d)
 
-                // Append text
-                arcs.append("text")
-                    .attr("transform", function(d) {
-                        var c = arc.centroid(d)
-                        return "translate(" + c[0]*3 +"," + c[1]*3 + ")";
-                    })
-                    .attr("text-anchor", "middle")
-                    .text(function(d,i) {
-                        return keys[i].replace("char_", "").replace("_", " - ")
-                    });
+                        // Label position
+                        var label   = "translate(" + c[0]*3 +"," + c[1]*3 + ")"
 
-                // Append percentage
-                arcs.append("text")
-                    .attr("text-anchor", "middle")
-                    .attr("class", "pie-percentage")
-                    .attr("transform", function(d) {
-                        var t           = d3.select(this)
-                        var c           = arc.centroid(d)
-                        var fontSize    = parseInt(t.style('font-size'))
+                        // Percent Text variables
+                        var fontSize    = parseInt(path.style("font-size"));
                         var marginTop   = 3
                         var positionRel = fontSize + marginTop
-                        
-                        return "translate(" + c[0]*3 +"," + (c[1]*3 + positionRel) + ")";
+                        var percentPos  = "translate(" + c[0]*3 +"," + (c[1]*3 + positionRel) + ")";
+
+                        // Line variables
+                        var x1      = c[0] * 1.85;
+                        var y1      = c[1] * 1.85;
+                        var x2      = c[0] * 2.5;
+                        var y2      = c[1] * 2.5;
+
+                        // Toggle brighter color of original
+                        path
+                            .attr('fill', d3.rgb(path.style("fill")).brighter(0.38));
+
+                        // Append text
+                        parent
+                            .append("text")
+                            .attr("transform", label)
+                            .attr("text-anchor", "middle")
+                            .text(keys[i].replace("char_", "").replace("_", " - "));
+
+                        // Append percentage
+                        parent 
+                            .append("text")
+                            .attr("text-anchor", "middle")
+                            .attr("class", "pie-percentage")
+                            .attr("transform", percentPos)
+                            .text(percentArr[i] + '%');
+
+                        // Append line
+                        parent
+                            .append("line")
+                            .attr("x1", x1)
+                            .attr("y1", y1)
+                            .attr("x2", x2)
+                            .attr("y2", y2)
+                            .attr("stroke-width", 1.5)
+                            .attr("stroke", "black");
                     })
-                    .text(function(d,i) {
-                        return percentArr[i] + '%'
+                    .on('mouseleave', function(d,i) {
+                        var parent  = d3.select(this.parentNode)
+                        var path = d3.select(this)
+
+                        // Revert to original color
+                        path.attr('fill', color(i))
+
+                        // Remove text and line
+                        parent.selectAll("text").remove()
+                        parent.selectAll("line").remove()
                     });
 
-                // Append line
-                arcs.append("line")
-                    .attr("x1", function(d) {
-                        var c = arc.centroid(d)
-                        return c[0] * 1.85
-                    })
-                    .attr("y1", function(d){
-                        var c = arc.centroid(d)
-                        return c[1] * 1.85
-                    })
-                    .attr("x2", function(d) {
-                        var c = arc.centroid(d)
-                        return c[0]*2.5
-                    })
-                    .attr("y2", function(d) {
-                        var c = arc.centroid(d)
-                        return c[1] * 2.5
-                    })
-                    .attr("stroke-width", 1.5)
-                    .attr("stroke", "black");
+                    /**
+                    * Legend
+                    **/
+
+                    
 
             } // end of link 
         }; // end of return
