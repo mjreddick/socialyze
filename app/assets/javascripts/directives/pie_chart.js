@@ -8,9 +8,14 @@ angular.module('socialyze')
                 pieChartData: '='
             },
             link: function(scope, element, attrs) {
+
                 // Use color set given by d3
                 var color = d3.scale.category20();
 
+
+                /***************************
+                * Data manipulation
+                ***************************/
                 // Delete keys in object if value is 0
                 for(var key in scope.pieChartData) {
                     if(scope.pieChartData[key] === 0) {
@@ -39,7 +44,9 @@ angular.module('socialyze')
                     percentArr.push((values[i]/totalValue * 100).toFixed(2))
                 }
 
-                // Start to build pie chart
+                /**************************
+                * Pie Chart via D3
+                ***************************/
                 var pieChart = d3.select("pie-chart")
                 var svg = pieChart.append("svg")
 
@@ -64,6 +71,7 @@ angular.module('socialyze')
                             .enter()
                             .append('g')
                             .attr("class", "arc")
+                            .attr("id", function(d,i) { return 'arc' + i })
                             .attr("transform", "translate(" + w/2.5 + "," + h/2 +")");
 
                 // d3.svg.arc() constructs a new arc generator
@@ -76,54 +84,9 @@ angular.module('socialyze')
                 arcs.append('path')
                     .attr('fill', function(d,i) { return color(i)})
                     .attr('d', arc)
+                    .attr('id', function(d,i) { return "path" + i })
                     .on('mouseenter', function(d,i) {
-                        var parent  = d3.select(this.parentNode)
-                        var path    = d3.select(this)
-                        var c       = arc.centroid(d)
-
-                        // Label position
-                        var label   = "translate(" + c[0]*3 +"," + c[1]*3 + ")"
-
-                        // Percent Text variables
-                        var fontSize    = parseInt(path.style("font-size"));
-                        var marginTop   = 3
-                        var positionRel = fontSize + marginTop
-                        var percentPos  = "translate(" + c[0]*3 +"," + (c[1]*3 + positionRel) + ")";
-
-                        // Line variables
-                        var x1      = c[0] * 1.85;
-                        var y1      = c[1] * 1.85;
-                        var x2      = c[0] * 2.5;
-                        var y2      = c[1] * 2.5;
-
-                        // Toggle brighter color of original
-                        path
-                            .attr('fill', d3.rgb(path.style("fill")).brighter(0.38));
-
-                        // Append text
-                        parent
-                            .append("text")
-                            .attr("transform", label)
-                            .attr("text-anchor", "middle")
-                            .text(keys[i].replace("char_", "").replace("_", " - "));
-
-                        // Append percentage
-                        parent 
-                            .append("text")
-                            .attr("text-anchor", "middle")
-                            .attr("class", "pie-percentage")
-                            .attr("transform", percentPos)
-                            .text(percentArr[i] + '%');
-
-                        // Append line
-                        parent
-                            .append("line")
-                            .attr("x1", x1)
-                            .attr("y1", y1)
-                            .attr("x2", x2)
-                            .attr("y2", y2)
-                            .attr("stroke-width", 1.5)
-                            .attr("stroke", "black");
+                        toggleText(this,d,i)
                     })
                     .on('mouseleave', function(d,i) {
                         var parent  = d3.select(this.parentNode)
@@ -137,12 +100,92 @@ angular.module('socialyze')
                         parent.selectAll("line").remove()
                     });
 
-                    /**
-                    * Legend
-                    **/
+                /****************
+                * Legend
+                ******************/
+                var colorBoxWH  = 35    // Dimensions of colored squares
+                var margin      = 7
+                var legend = svg.append("g")
+                                .attr("class", "legend")
 
-                    
+                // Append colored squares
+                legend.selectAll("rect")
+                  .data(keys)
+                  .enter()
+                  .append("rect")
+                  .attr("id", function(d,i) { return 'box' + i})
+                  .attr("x", w * .75)
+                  .attr("y", function(d,i) { return (h * .20) + i * (colorBoxWH + margin) })
+                  .attr("height", colorBoxWH)
+                  .attr("width", colorBoxWH)
+                  .attr("fill", function(d,i) { return color(i) })
 
+                // Append text
+                legend.selectAll("text")
+                    .data(keys)
+                    .enter()
+                    .append("text")
+                    .attr("text-anchor", "start")
+                    .text(function(d,i) { return d.replace("char_", "").replace("_", " - ")})
+                    .attr("transform", function(d,i) {
+                        var textHeight  = 27
+                        var x           = w * .75 + colorBoxWH + margin
+                        var y           = (h * .20) + i * (colorBoxWH + margin) + textHeight
+
+                        return "translate(" + x +"," + y + ")"
+                    });
+
+
+                var toggleText = function(elem,d,i) {
+                    var path    = d3.select(elem)
+                    var parent  = d3.select(elem.parentNode)
+                    var c       = arc.centroid(d)
+
+                    // Label position
+                    var label   = "translate(" + c[0]*3 +"," + c[1]*3 + ")"
+
+                    // Percent Text variables
+                    var fontSize    = parseInt(path.style("font-size"));
+                    var marginTop   = 3
+                    var positionRel = fontSize + marginTop
+                    var percentPos  = "translate(" + c[0]*3 +"," + (c[1]*3 + positionRel) + ")";
+
+                    // Line variables
+                    var x1      = c[0] * 1.85;
+                    var y1      = c[1] * 1.85;
+                    var x2      = c[0] * 2.5;
+                    var y2      = c[1] * 2.5;
+
+                    // Toggle brighter color of original
+                    path
+                        .attr('fill', d3.rgb(path.style("fill")).brighter(0.38));
+
+                    // Append text
+                    parent
+                        .append("text")
+                        .attr("transform", label)
+                        .attr("text-anchor", "middle")
+                        .text(keys[i].replace("char_", "").replace("_", " - "));
+
+                    // Append percentage
+                    parent 
+                        .append("text")
+                        .attr("text-anchor", "middle")
+                        .attr("class", "pie-percentage")
+                        .attr("transform", percentPos)
+                        .text(percentArr[i] + '%');
+
+                    // Append line
+                    parent
+                        .append("line")
+                        .attr("x1", x1)
+                        .attr("y1", y1)
+                        .attr("x2", x2)
+                        .attr("y2", y2)
+                        .attr("stroke-width", 1.5)
+                        .attr("stroke", "black");
+                }// end of toggleText()
+                        
             } // end of link 
         }; // end of return
     }; // end of pieChart
