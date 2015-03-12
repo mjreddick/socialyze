@@ -16,6 +16,7 @@ Requirements
 * Twitter API key and secret
 * Sendgrid username and password
 * Redis
+* Omniauth
 
 Run it
 
